@@ -39,7 +39,7 @@
 			Coordinator, to get involved in competitions.</p>
 			<div class="collection">
 				<article>
-					<footer>October</footer>
+					<footer>October 20</footer>
 					<h3><a
 					href="http://www.ieee.org/membership_services/membership/students/competitions/xtreme/index.html"
 					title="IEEEXtreme">IEEEXtreme</a></h3>
