@@ -112,6 +112,13 @@
 					<span>Resource Acquisition</span>
 				</div>
 			</div>
+
+			<p>Additionally, there are several graduate students
+			and professors that support our efforts: <a
+			href="http://www.cogitolingua.net/blog/" title="Eric
+			Hennigan">Eric Hennigan</a> for moral support, Alex
+			Thornton for organization advice, Dan Hirschberg
+			for algorithm help to name a few.</p>
 		</div>
 
 		<div id="what_is" class="content-block">
