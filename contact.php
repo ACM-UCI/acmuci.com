@@ -2,7 +2,7 @@
 
 require("header.php");
 
-define('ACMUCI_EMAIL', 'acmuci@gmail.com');
+define('ACMUCI_EMAIL', 'acmirvine@gmail.com');
 define('EMAIL_SUBJECT', 'Website Contact Form Submission');
 
 $success = false;
