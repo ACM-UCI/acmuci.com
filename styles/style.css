@@ -28,7 +28,7 @@ header#page-header {
 
 header#page-header .inner {
 	margin: 0 auto;
-	padding: 48px 0;
+	padding: 24px 0 48px;
 	background: url("images/special_banner.png") scroll	no-repeat;
 }
 
