@@ -2,6 +2,10 @@
 <html>
 <head>
 <title>ACM, UC Irvine Chapter</title>
+<meta name="description" content="UC Irvine student chapter for
+ACM for advancing computing as a science and profession." />
+<meta name="keywords" content="UC Irvine, ACM, computing,
+computer science, icpc, ieeextreme, programming competition" />
 <link rel="stylesheet" type="text/css" href="styles/style.css" />
 </head>
 <body>
