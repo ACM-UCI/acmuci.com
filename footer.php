@@ -38,7 +38,7 @@
 			Borje</a>.
 		</div>
 	</div>
-<footer>
+</footer>
 
 </body>
 </html>
