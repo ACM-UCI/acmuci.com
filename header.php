@@ -10,6 +10,7 @@ computer science, icpc, ieeextreme, programming competition" />
 </head>
 <body>
 
+<div id="ribbon">&nbsp;</div>
 <header id="page-header">
 	<div class="inner">
 		<div id="meta">
