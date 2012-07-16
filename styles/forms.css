@@ -1,0 +1,57 @@
+form {
+	padding: 24px 40px;
+	background-color: #F6F6F6;
+	border-radius: 5px;
+}
+
+form label { font: 16px Arial; }
+
+form input[type="text"], form input[type="email"], textarea {
+	font: 14px Helvetica, Arial, sans-serif;
+	padding: 12px 14px;
+	border: 2px solid #DEE2E2;
+	border-radius: 5px;
+}
+
+form input[type="text"]:focus, form input[type="email"]:focus,
+textarea:focus {
+	outline: 0;
+	border-color: #0182AC;
+}
+
+form input[type="text"]:hover, form input[type="email"]:hover,
+textarea:hover {
+	outline: 0;
+	border-color: #0182AC;
+}
+
+form input[type="text"], form input[type="email"] { width: 360px; }
+
+form input[type="submit"] {	padding: 6px 8px; }
+
+textarea {
+	width: 500px;
+	height: 236px;
+}
+
+form .errors p {
+	padding: 12px 20px;
+	background-color: #FF9494;
+	border-radius: 5px; 
+}
+
+form .success p {
+	padding: 12px 20px;
+	background-color: #D5FFCE;
+	border-radius: 5px; 
+}
+
+#contact form {
+	float: left;
+	width: 540px;
+}
+
+#contact .caption {
+	float: right;
+	width: 250px;
+}

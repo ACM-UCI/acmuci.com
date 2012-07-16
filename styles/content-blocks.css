@@ -1,0 +1,47 @@
+.collection .member {
+	float: left;
+	margin: 0 20px 0 0;
+}
+
+.collection .member:last-child { margin-right: 0; }
+
+.collection .member img {
+	padding: 10px;
+	background-color: #E0E0E0;
+}
+
+.collection .member h4 {
+	font: 14px "Aller";
+	text-align: center;
+}
+
+.collection .member span {
+	display: block;
+	font-size: 12px;
+	text-align: center;
+}
+
+#activities .collection { 
+	overflow: hidden;
+	margin: 24px 0 0;
+}
+
+#activities .collection .activity {
+	float: left;
+	width: 435px;
+	overflow: hidden;
+	margin: 24px 40px 24px 0;
+}
+
+#activities .collection .activity:nth-child(2n+2) { margin-right: 0; }
+
+#activities .collection .activity img { 
+	float: left;
+	margin-right: 32px;
+}
+
+#activities .collection .activity p { 
+	float: right;
+	width: 275px;
+}
+

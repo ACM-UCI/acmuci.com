@@ -1,0 +1,100 @@
+@font-face {
+    font-family: "Bebas";
+    src: url("fonts/BebasNeue.eot");
+    src: url("fonts/BebasNeue.eot?#iefix")
+	format("embedded-opentype"),
+         url("fonts/BebasNeue.woff") format("woff"),
+         url("fonts/BebasNeue.ttf") format("truetype"),
+         url("fonts/BebasNeue.svg#BebasNeueRegular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Aller";
+    src: url("fonts/Aller_Rg.eot");
+    src: url("fonts/Aller_Rg.eot?#iefix")
+	format("embedded-opentype"),
+         url("fonts/Aller_Rg.woff") format("woff"),
+         url("fonts/Aller_Rg.ttf") format("truetype"),
+         url("fonts/Aller_Rg.svg#AllerRegular') format("svg");
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: "Aller Light";
+    src: url("fonts/fonts/Aller_Lt.eot");
+    src: url("fonts/Aller_Lt.eot?#iefix")
+	format("embedded-opentype"),
+         url("fonts/Aller_Lt.woff") format("woff"),
+         url("fonts/Aller_Lt.ttf") format("truetype"),
+         url("fonts/Aller_Lt.svg#AllerLightRegular")
+		 format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5 {
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+	margin: 0 0 20px;
+	font: 38px "Bebas";
+	line-height: 40px;
+	color: #606060;
+}
+
+h3 {
+	font: normal 16px "Aller";
+	line-height: 24px;
+	color: rgb(1, 130, 172);
+}
+
+h4 {
+	font: normal 16px "Aller";
+	line-height: 24px;
+}
+
+ol, ul { margin: 24px 0; padding: 0 0 0 20px; }
+li { margin: 12px 0; }
+
+a:link, a:visited, a:active { text-decoration: none; }
+
+a:link { color: rgb(1, 130, 172); }
+a:visited { color: rgb(1, 130, 172); }
+a:active { color: rgb(252,147,0); }
+a:hover { color: #303030; }
+
+a.button {
+	display: inline-block;
+	padding: 12px 48px;
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: -1px -1px 1px #C0C0C0;
+	text-transform: uppercase;
+	background:-webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.8, rgb(255,217,0)),
+		color-stop(0.15, rgb(252,147,0))
+	); 
+	border: 2px solid rgb(255, 214, 0);
+	border-radius: 4px;
+	color: #FFF;
+}
+
+a.button:hover {
+	border: 2px solid #FFF;
+}
+
+blockquote {
+	margin: 24px 0 24px 20px;
+	padding: 24px 40px;
+	background: #E0E0E0;
+	border-radius: 5px;
+}
