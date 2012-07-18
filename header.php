@@ -1,3 +1,11 @@
+<?php
+$ua = $_SERVER['HTTP_USER_AGENT'];
+$checker = array(
+  'iphone'=>preg_match('/iPhone|iPod/', $ua),
+  'android'=>preg_match('/Android/', $ua),
+);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +14,16 @@
 ACM for advancing computing as a science and profession." />
 <meta name="keywords" content="UC Irvine, ACM, computing,
 computer science, icpc, ieeextreme, programming competition" />
+<?php if ($checker['iphone'] || $checker['android']): ?>
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="styles/mobi.css"
-media="only screen and (max-device-width: 480px)" />
+media="all" />
+<?php else: ?>
 <link rel="stylesheet" type="text/css" href="styles/style.css"
 media="screen" />
+<?php endif; ?>
+
 </head>
 <body>
 

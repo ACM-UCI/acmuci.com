@@ -5,7 +5,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	font: 12px Helvetica, Arial, sans-serif;
+	font: 13px Helvetica, Arial, sans-serif;
 	line-height: 18px;
 	background-color: #F0F0F0;
 	color: #444;
@@ -14,7 +14,6 @@ body {
 #ribbon { display: none; }
 
 header#page-header {
-	width: 100%;
 	overflow: hidden;
 	text-align: center;
 	background: url("images/special_grad.png") scroll repeat-x;
@@ -24,9 +23,7 @@ header#page-header {
 
 
 header#page-header .inner {
-	margin: 0 auto;
-	padding: 12px 0 24px;
-	background: url("images/special_banner.png") scroll	no-repeat;
+	padding: 12px 1% 24px;
 }
 
 header#page-header #meta { overflow: hidden; }
@@ -35,14 +32,16 @@ header#page-header #tagline {
 	display: none;
 	clear: both;
 	margin-top: 12px;
-	font: 34px "Aller Light";
+	font: 22px "Aller Light";
 	line-height: 36px;
 	text-shadow: -1px -1px 1px #303030;
 }
 
+header#page-header p { display: none; }
+
 header#page-header h1 {
 	overflow: hidden;
-	font: 34px "Bebas";
+	font: 22px "Bebas";
 	line-height: 64px;
 	color: #FFF;
 }
@@ -67,8 +66,8 @@ header#page-header nav#page-nav {
 header#page-header nav#page-nav a {
 	display: inline-block;
 	margin-right: 10px;
-	padding: 10px 12px;
-	font-size: 14px;
+	padding: 8px 10px;
+	font-size: 12px;
 	line-height: 16px;
 	background: rgba(0, 0, 0, 0.3);
 	color: #FFF;
@@ -85,7 +84,7 @@ footer#page-footer {
 }
 
 footer#page-footer .inner {
-	padding: 12px 0;
+	padding: 12px 1%;
 	overflow: hidden;
 	text-align: left;
 }
@@ -107,7 +106,8 @@ footer#page-footer #locations-collection {
 
 footer#page-footer #locations-collection .address {
 	float: left;
-	width: 200px;
+	width: 160px;
+	margin-right: 15px;
 	margin: 12px 0;
 }
 
@@ -128,57 +128,59 @@ footer#page-footer #copyright {
 .content-block {
 	clear: both;
 	overflow: hidden;
-	margin: 24px 0;
-	padding: 23px 0;
+	margin: 12px 0;
+	padding: 12px 0 11px 0;
 	border-bottom: 1px dotted #C0C0C0;
 }
 
 .content-block:last-child { border-bottom: 0; }
 
 #content {
+	width: 100%;
 	border-top: 4px solid rgb(131, 206, 226);	
 }
 
-#content.home { background: url("images/content-outer-bg.png") scroll repeat-y center; }
+#content.home { background: none; }
 
 #content .inner {
-	margin: 0 auto;
 	overflow: hidden;
 	repeat-y;
 }
 
-#content.home .inner { background:
-url("images/content-inner-bg.png") scroll; }
+#content.home .inner { background: none; padding: 0; }
 
 #content #events-stream {
 	float: left;
-	width: 180px;
-	margin-right: 10px;
-	padding: 24px 20px 24px 0;
+	width: 100%;
+	padding: 12px 0 0;
 }
 
 #content #events-stream h2 {
-	color: #C0C0C0;
+	color: #303030;
 }
 
 #content #events-stream article footer {
 	font-size: 11px;
-	line-height: 24px;
+	line-height: 12px;
 	color: #606060;
 }
 
 #content #events-stream article {
-	margin-bottom: 24px;
-	padding-bottom: 23px;
-	border-bottom: 1px dotted #C0C0C0;
+	margin: 0;
+	padding: 11px 10px 12px;
+	background-color: #E0E0E0;
+	border-top: 1px solid #C0C0C0;
 }
+
+#content #events-stream article:nth-child(2n) { background-color:
+#D0D0D0; }
 
 #content #events-stream article p {	margin: 0; }
 
 #content #main-stream {
-	margin-left: 230px;
-	padding: 24px 0 12px;
-	overflow: hidden;
+	display: none;
+	margin-left: 240px;
+	padding: 12px 0 12px;
 }
 
 #content #main-stream .left { margin-right: 20px; }
@@ -215,11 +217,11 @@ url("images/content-inner-bg.png") scroll; }
 .two { display: inline-block; width: 330px; }
 .three { display: inline-block; width: 540px; }
 
-.inner { width: 410px; margin: 0 auto; padding: 0 25px; text-align: left; }
-
+.inner { width: 98%; margin: 0; padding: 0 1%; text-align: left; }
 
 h2 {
-	font-size: 34px;
+	font-size: 22px;
+	font-weight: bold;
 	margin-bottom: 12px;
 }
 
@@ -228,12 +230,13 @@ h3 {
 	line-height: 18px;
 }
 
-.content-block { margin: 12px 0; padding: 12px 0 11px 0; }
-.activity { width: 410px; }
-.activity p { width: 250px; }
+#activities .collection { margin: 0; }
+#activities .collection .activity { float: none; width: 100%; margin: 12px 0; }
+#activities .collection .activity p { float: none; width: 100%; }
+#activities .collection .activity img { display: none; }
 
 form {
-	width: 390px;
+	width: 100%;
 	float: none;
 	margin-bottom: 12px;
 	padding: 12px 20px;
@@ -243,14 +246,14 @@ form label { font-size: 14px; }
 
 form input[type="text"], form input[type="email"], form textarea {
 	font-size: 12px;
-	width: 332px;
-	padding: 8px 10px;
+	width: 40%;
+	padding: 8px 6px;
 }
 
-form textarea { height: 180px; width: 340px; }
+form textarea { height: 180px; width: 80%; }
 
 #contact .caption { 
 	float: none;
-	width: 390px;
+	width: 90%;
 	padding: 0 10px;
 }
