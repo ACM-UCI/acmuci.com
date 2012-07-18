@@ -6,7 +6,10 @@
 ACM for advancing computing as a science and profession." />
 <meta name="keywords" content="UC Irvine, ACM, computing,
 computer science, icpc, ieeextreme, programming competition" />
-<link rel="stylesheet" type="text/css" href="styles/style.css" />
+<link rel="stylesheet" type="text/css" href="styles/mobi.css"
+media="only screen and (max-device-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="styles/style.css"
+media="screen" />
 </head>
 <body>
 
