@@ -41,8 +41,9 @@ header#page-header p { display: none; }
 
 header#page-header h1 {
 	overflow: hidden;
-	font: 22px "Bebas";
+	font: bold 22px "Bebas", Arial, Helvetica, sans-serif;
 	line-height: 64px;
+	text-transform: uppercase;
 	color: #FFF;
 }
 
