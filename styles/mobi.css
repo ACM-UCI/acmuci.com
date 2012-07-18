@@ -235,7 +235,7 @@ h3 {
 #activities .collection .activity p { float: none; width: 100%; }
 #activities .collection .activity img { display: none; }
 
-form {
+#contact form {
 	width: 100%;
 	float: none;
 	margin-bottom: 12px;
