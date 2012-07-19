@@ -43,10 +43,8 @@ media="screen" />
 			</nav>
 		</div>
 
-		<div id="tagline">
-			We compete in intercollegiate competitions
-			and develop innovative projects
-		</div>
+		<div id="tagline">We compete in intercollegiate
+		competitions and develop your ideas into projects</div>
 		<p>Interested? There are no requirements to join; in
 		fact, we encourage you to join if you have no
 		experience. Consider attending one of
