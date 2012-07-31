@@ -6,25 +6,28 @@
 			<h2>Events</h2>
 			<article>
 				<footer>Week 1: Thursday <a
-				href="http://www.uci.edu/campusmap/map.php?l=1&q=314">@DBH1300</a></footer>
+				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
+				target="_blank">@DBH1300</a></footer>
 				<h3>General Meeting</h3>
 				<p>First Meeting of Fall Quarter and the
 				2012-2013 school year.</p>
 			</article>
 			<article>
-				<footer>Week 2: Thursday <a href="http://www.uci.edu/campusmap/map.php?l=1@DBH1300q=314">@DBH1300</a></footer>
+				<footer>Week 2: Thursday <a
+				href="http://www.uci.edu/campusmap/map.php?l=1@DBH1300q=314"
+				target="_blank">@DBH1300</a></footer>
 				<h3>DHTML, CSS3, XML, and AJAX Workshop</h3>
 				<p>For intermediate and advanced users.</p>
 			</article>
 			<article>
 				<footer>Week 3: Thursday <a
-				href="http://www.uci.edu/campusmap/map.php?l=1&q=314">@DBH1300</a></footer>
+				href="http://www.uci.edu/campusmap/map.php?l=1&q=314" target="_blank">@DBH1300</a></footer>
 				<h3>Bookbinding Workshop</h3>
 				<p>Cooperative with DATspace.</p>
 			</article>
 			<article>
 				<footer>Week 4: Thursday <a
-				href="http://www.uci.edu/campusmap/map.php?l=1&q=314">@DBH1300</a></footer>
+				href="http://www.uci.edu/campusmap/map.php?l=1&q=314" target="_blank">@DBH1300</a></footer>
 				<h3>C++ Memory Manipulation</h3>
 				<p>For advanced users.</p>
 			</article>
@@ -42,7 +45,7 @@
 					<footer>October 20</footer>
 					<h3><a
 					href="http://www.ieee.org/membership_services/membership/students/competitions/xtreme/index.html"
-					title="IEEEXtreme">IEEEXtreme</a></h3>
+					title="IEEEXtreme" target="_blank">IEEEXtreme</a></h3>
 					<p>The longest programming competition with a
 					24-hour duration.</p>
 				</article>
@@ -50,7 +53,7 @@
 				<article>
 					<footer>November 10</footer>
 					<h3><a href="http://icpc.baylor.edu/"
-					title="ICPC">ICPC</a></h3> <p>The Intercollegiate
+					title="ICPC" target="_blank">ICPC</a></h3> <p>The Intercollegiate
 					Programming Competition is a team-based
 					programming competition for five hours.</p>
 				</article>
@@ -59,7 +62,7 @@
 					<footer>January</footer>
 					<h3><a
 					href="http://web.mit.edu/edgerton/battlebots/"
-					title="MIT Battlebots">MIT Battlebots</a></h3>
+					title="MIT Battlebots" target="_blank">MIT Battlebots</a></h3>
 					<p>Develop an artificially intelligent player
 					and have it compete against others on a
 					strategic board.</p>

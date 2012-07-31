@@ -49,7 +49,7 @@ media="screen" />
 		fact, we encourage you to join if you have no
 		experience. Consider attending one of
 		our meetings that we hold once a week at
-		<strong>DBH 1300</strong> at <strong>7:30PM</strong>.
+		<strong>DBH 1300</strong> at <strong>6:30PM</strong>.
 		Our chapter hosts a variety of events including
 		workshops by UCI students to share knowledge and
 		presentations by distinguished speakers about new

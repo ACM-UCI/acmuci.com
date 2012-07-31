@@ -39,7 +39,7 @@
 					<h3>Career Success</h3>
 					<p>As of 2012, the unemployment rate in our
 					industry <a
-					href="http://mobile.eweek.com/c/a/IT-Management/Mobile-Java-Developers-Hard-to-Find-Dice-691423/">hovers
+					href="http://mobile.eweek.com/c/a/IT-Management/Mobile-Java-Developers-Hard-to-Find-Dice-691423/" target="_blank">hovers
 					around 3.5%</a>, far below the national
 					average. There is an increasing demand for
 					technology professionals. We plan to secure
@@ -53,7 +53,7 @@
 					ACM chapter are allowed to compete in
 					the the nationally renown <a
 					href="http://icpc.baylor.edu/"
-					title="ACM-ICPC">Intercollegiate
+					title="ACM-ICPC" target="_blank">Intercollegiate
 					Programming Competition</a>. We hope to send a
 					team to the World Finals.</p>
 				</div>
@@ -116,7 +116,7 @@
 			<p>Additionally, there are several graduate students
 			and professors that support our efforts: <a
 			href="http://www.cogitolingua.net/blog/" title="Eric
-			Hennigan">Eric Hennigan</a> for moral support, Alex
+			Hennigan" target="_blank">Eric Hennigan</a> for moral support, Alex
 			Thornton for organization advice, Dan Hirschberg
 			for algorithm help to name a few.</p>
 		</div>
@@ -126,7 +126,7 @@
 			<div class="three left">
 				<p>ACM is an initialism for the Association of
 				Computing Machinery. We refer to <a
-				href="http://www.acm.org/" title="ACM">Big
+				href="http://www.acm.org/" title="ACM" target="_blank">Big
 				ACM as the national organization</a> while we are
 				a student chapter of this national
 				organization.</p>
