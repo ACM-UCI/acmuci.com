@@ -7,7 +7,7 @@
 			<article>
 				<footer>Week 1: Thursday <a
 				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
-				target="_blank">@DBH1300</a></footer>
+				target="_blank">@DBH4011</a></footer>
 				<h3>General Meeting</h3>
 				<p>First Meeting of Fall Quarter and the
 				2012-2013 school year.</p>
@@ -15,19 +15,21 @@
 			<article>
 				<footer>Week 2: Thursday <a
 				href="http://www.uci.edu/campusmap/map.php?l=1@DBH1300q=314"
-				target="_blank">@DBH1300</a></footer>
+				target="_blank">@DBH4011</a></footer>
 				<h3>DHTML, CSS3, XML, and AJAX Workshop</h3>
 				<p>For intermediate and advanced users.</p>
 			</article>
 			<article>
 				<footer>Week 3: Thursday <a
-				href="http://www.uci.edu/campusmap/map.php?l=1&q=314" target="_blank">@DBH1300</a></footer>
+				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
+				target="_blank">@DBH4011</a></footer>
 				<h3>Bookbinding Workshop</h3>
 				<p>Cooperative with DATspace.</p>
 			</article>
 			<article>
 				<footer>Week 4: Thursday <a
-				href="http://www.uci.edu/campusmap/map.php?l=1&q=314" target="_blank">@DBH1300</a></footer>
+				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
+				target="_blank">@DBH4011</a></footer>
 				<h3>C++ Memory Manipulation</h3>
 				<p>For advanced users.</p>
 			</article>

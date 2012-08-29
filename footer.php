@@ -14,7 +14,7 @@
 			<div class="address">
 				<h3>General Meetings</h3>
 				Every Thursday <br />
-				Room 1300<br />
+				Room 4011<br />
 				Donald Bren Hall (DBH)<br />
 			</div>
 			<div class="address">
