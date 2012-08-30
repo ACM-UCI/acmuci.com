@@ -40,6 +40,7 @@ media="screen" />
 				<a
 				href="http://www.facebook.com/groups/228954137162541/events/"
 				title="Facebook Events">Events</a> 
+				<a href="projects.php" title="Projects">Projects</a> 
 				<a href="about.php" title="About Us">About</a> 
 				<a href="contact.php" title="Contact Us">Contact Us</a>
 			</nav>
