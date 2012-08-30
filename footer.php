@@ -3,8 +3,7 @@
 	<div class="inner">
 		<nav id="page-footer-nav">
 			<a href="index.php" title="Home">Home</a>
-			<a
-			href="http://www.facebook.com/groups/228954137162541/events/"
+			<a href="http://www.facebook.com/groups/228954137162541/events/"
 			title="Facebook Events">Events</a>
 			<a href="about.php" title="About Us">About</a> 
 			<a href="contact.php" title="Contact Us">Contact Us</a>
@@ -32,9 +31,8 @@
 		</div>
 		
 		<div id="copyright">
-			Copyright &copy; 2011, 2012 ACM, UC Irvine. All
-			Rights Reserved.<br /> Design by <a
-			href="http://www.giocc.com/" title="GioCC">Gio
+			Copyright &copy; 2011, 2012 ACM, UC Irvine. All Rights Reserved.<br
+			/> Design by <a href="http://www.giocc.com/" title="GioCC">Gio
 			Borje</a>.
 		</div>
 	</div>
