@@ -1,20 +1,20 @@
 <?php
-$ua = $_SERVER['HTTP_USER_AGENT'];
-$checker = array(
-  'iphone'=>preg_match('/iPhone|iPod/', $ua),
-  'android'=>preg_match('/Android/', $ua),
+// Check the user agent
+$user_agent = $_SERVER['HTTP_USER_AGENT'];
+$user_agent_checker = array(
+  'iphone' => preg_match('/iPhone|iPod/', $user_agent),
+  'android' => preg_match('/Android/', $user_agent),
 );
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>ACM, UC Irvine Chapter</title>
-<meta name="description" content="UC Irvine student chapter for
-ACM for advancing computing as a science and profession." />
-<meta name="keywords" content="UC Irvine, ACM, computing,
-computer science, icpc, ieeextreme, programming competition" />
-<?php if ($checker['iphone'] || $checker['android']): ?>
+<title><?= SITE_NAME ?></title>
+<meta name="description" content="<?= SITE_DESC ?>" />
+<meta name="keywords" content="<?= SITE_KEYWORDS ?>" />
+
+<?php if ($user_agent_checker['iphone'] || $user_agent_checker['android']): ?>
 <meta name="HandheldFriendly" content="true" />
 <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="styles/mobi.css"
@@ -31,8 +31,10 @@ media="screen" />
 <header id="page-header">
 	<div class="inner">
 		<div id="meta">
-			<h1><a href="index.php"><img src="images/logo.png" title="ACM"
-			/> <span id="chapter_tag">UC Irvine Chapter</span></a></h1>
+			<h1>
+				<a href="index.php"><img src="images/logo.png" title="ACM"
+			/> <span id="chapter_tag">UC Irvine Chapter</span></a>
+			</h1>
 			<nav id="page-nav">
 				<a href="index.php" title="Home">Home</a> 
 				<a
@@ -49,12 +51,13 @@ media="screen" />
 		fact, we encourage you to join if you have no
 		experience. Consider attending one of
 		our meetings that we hold once a week at
-		<strong>DBH 4011</strong> at <strong>6:30PM</strong>.
+		<strong><?= ORG_ROOM ?></strong> at <strong><?=
+		ORG_TIME ?></strong>.
 		Our chapter hosts a variety of events including
 		workshops by UCI students to share knowledge and
 		presentations by distinguished speakers about new
 		ideas. <strong>We also love coffee.</strong></p>
-		<a href="http://www.facebook.com/groups/228954137162541/" class="button">Join ACM</a>
-	</div>
+		<a href="http://www.facebook.com/groups/228954137162541/"
+		class="button">Join ACM</a> </div>
 </header>
 

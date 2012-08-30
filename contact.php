@@ -1,9 +1,8 @@
 <?php 
 
-require("header.php");
-
-define('ACMUCI_EMAIL', 'acmirvine@gmail.com');
-define('EMAIL_SUBJECT', 'Website Contact Form Submission');
+define('IN_SITE', true);
+require 'common.php';
+require 'header.php';
 
 $success = false;
 if (isset($_POST['send'])) {
@@ -31,7 +30,7 @@ if (isset($_POST['send'])) {
 		$headers .= "X-Mailer: PHP\n";
 		$headers .= "X-Priority: 1\n";
 
-		if (mail(ACMUCI_EMAIL, EMAIL_SUBJECT, $message, $headers))
+		if (mail(ORG_EMAIL, EMAIL_SUBJECT, $message, $headers))
 			$success = true;
 		else
 			$errors .= '<p>Mail could not be sent.</p>';
@@ -94,4 +93,4 @@ if (isset($_POST['send'])) {
 	</div>
 </section>
 
-<?php require("footer.php"); ?>
+<?php require 'footer.php'; ?>

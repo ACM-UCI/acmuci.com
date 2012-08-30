@@ -1,4 +1,8 @@
-<?php require("header.php"); ?>
+<?php
+define('IN_SITE', true);
+require 'common.php';
+require 'header.php';
+?>
 
 <section id="content">
 	<div class="inner">
@@ -153,4 +157,4 @@
 	</div>
 </section>
 
-<?php require("footer.php"); ?>
+<?php require 'footer.php'; ?>
