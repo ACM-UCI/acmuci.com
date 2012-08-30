@@ -138,11 +138,10 @@ footer#page-footer #copyright {
 
 .content-block:last-child { border-bottom: 0; }
 
-#content {
-	border-top: 4px solid rgb(131, 206, 226);	
-}
+#content { border-top: 4px solid rgb(131, 206, 226); }
 
-#content.home { background: url("images/content-outer-bg.png") scroll repeat-y center; }
+#content.home { background: url("images/content-outer-bg.png") scroll repeat-y
+center; }
 
 #content .inner {
 	margin: 0 auto;
@@ -150,8 +149,7 @@ footer#page-footer #copyright {
 	repeat-y;
 }
 
-#content.home .inner { background:
-url("images/content-inner-bg.png") scroll; }
+#content.home .inner { background: url("images/content-inner-bg.png") scroll; }
 
 #content #events-stream {
 	float: left;
@@ -211,6 +209,12 @@ url("images/content-inner-bg.png") scroll; }
 }
 
 /* =GRID */
+
+.spanner {
+	width: 100%;
+	margin: 24px 0;
+	text-align: center;
+}
 
 .left { float: left; margin-right: 40px; }
 .right { float: right; margin-left: 40px; }
