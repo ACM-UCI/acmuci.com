@@ -21,7 +21,11 @@ require 'header.php';
 				Three-Phase Approach" />
 			</div>
 
-			<p>Each project has a contact whom can provide further details.</p>
+			<p>Each project has a contact whom can provide further details. If 
+			contact information is not provided, please contact the current 
+			project manager, Gio Borje for details about the project. If 
+			instead, you wish to propose a project for ACM, use the form below 
+			or simply contact the project manager, Gio Borje.</p>
 		</div>	
 
 		<div class="content-block">
@@ -37,6 +41,9 @@ require 'header.php';
 					</footer>
 					<p>Develop a mobile application to that marks the nearest 
 					wireless charging location in UC Irvine.</p>
+					
+					<footer><strong>Committed Members:</strong> Kusum 
+					Kumar</footer>
 				</div>
 
 				<h2>Project Proposal</h2>
@@ -94,6 +101,9 @@ require 'header.php';
 					existing processes. This includes actions such as assigning
 					grades and checking for plagiarism across all
 					submissions.</p>
+
+					<footer><strong>Committed Members:</strong> Gio Borje, 
+					Ivan Check, Huy Vuong</footer>
 				</div>
 			</div>
 		</div>
