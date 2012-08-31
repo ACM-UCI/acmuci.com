@@ -2,6 +2,36 @@
 define('IN_SITE', true);
 require 'common.php';
 require 'header.php';
+
+$incubator_projects = array();
+$active_projects = array();
+
+// Retrieve projects in incubation
+$query = 'SELECT * FROM projects WHERE project_status=1';
+$incubator_projects = $db->query($query);
+
+// Retrieve active projects
+$query = 'SELECT * FROM projects WHERE project_status=2';
+$active_projects = $db->query($query);
+
+if (isset($_POST['submit'])) {
+	$errors = '';
+
+	if (empty($errors)) {
+		$query = 'INSERT INTO projects (project_status, project_name,
+		project_contact_name, project_contact_email, project_desc) VALUES
+		(:project_status, :project_name, :project_contact_name,
+		:project_contact_email, :project_desc)';
+		$stmt = $db->prepare($query);
+		$stmt->bindParam(':project_status', $project_status, PDO::PARAM_INT);
+		$stmt->bindParam(':project_name', $project_name);
+		$stmt->bindParam(':project_contact_name', $project_contact_name);
+		$stmt->bindParam(':project_contact_email', $project_contact_email);
+		$stmt->bindParam(':project_desc', $project_desc);
+		$stmt->execute();
+	}
+
+}
 ?>
 
 <section id="content">
@@ -26,25 +56,37 @@ require 'header.php';
 			project manager, Gio Borje for details about the project. If 
 			instead, you wish to propose a project for ACM, use the form below 
 			or simply contact the project manager, Gio Borje.</p>
+
+			<h3>Benefits of a Project with ACM</h3>
+			<ul>
+				<li>Private GitHub Repository</li>
+				<li>Private Redmine project</li>
+			</ul>
 		</div>	
 
 		<div class="content-block">
 			<div id="projects-incubator">
 				<h2>Incubator</h2>
+				<?php foreach ($incubator_projects as $incubator_project): ?>
 				<div class="project">
-					<h3>Duracell Powermat</h3>
+					<h3><?= $incubator_project['project_name'] ?></h3>
 					<footer>
 						<dl>
 							<dt>Contact Name</dt>
-							<dd>Frank Williams</dd>
+							<dd><?= $incubator_project['project_contact_name']
+							?></dd>
+							<?php if
+							(isset($incubator_project['project_contact_email'])):
+							?>
+							<dt>Contact Email</dt>
+							<dd><?= $incubator_project['project_contact_email']
+							?></dd>
+							<?php endif; ?>
 						</dl>
 					</footer>
-					<p>Develop a mobile application to that marks the nearest 
-					wireless charging location in UC Irvine.</p>
-					
-					<footer><strong>Committed Members:</strong> Kusum 
-					Kumar</footer>
+					<p><?= $incubator_project['project_desc'] ?></p>
 				</div>
+				<?php endforeach; ?>
 
 				<h2>Project Proposal</h2>
 				<form id="new-project" action="projects.php" method="POST">
@@ -72,39 +114,26 @@ require 'header.php';
 
 			<div id="projects-active">
 				<h2>Active</h2>
+				<?php foreach ($active_projects as $active_project): ?>
 				<div class="project">
-					<h3>acmuci.com Website</h3>
+					<h3><?= $active_project['project_name'] ?></h3>
 					<footer>
 						<dl>
 							<dt>Contact Name</dt>
-							<dd>Gio Borje</dd>
+							<dd><?= $active_project['project_contact_name']
+							?></dd>
+							<?php if
+							(isset($active_project['project_contact_email'])):
+							?>
 							<dt>Contact Email</dt>
-							<dd>gborje@uci.edu</dd>
-						<dl>
-					</footer> 
-					<p>Contribute to the development of this website! Each
-					year, ACM's UC Irvine Chapter will participate in the ACM
-					Student Chapter Excellence Awards to win the Outstanding
-					Chapter Website award.</p>
-				</div>
-
-				<div class="project">
-					<h3>AllUnit</h3>
-					<footer>
-						<dl>
-							<dt>Contact name</dt>
-							<dd>Cameron Samak</dt>
+							<dd><?= $active_project['project_contact_email']
+							?></dd>
+							<?php endif; ?>
 						</dl>
 					</footer>
-					<p>Tailored to university professors and students, the
-					project will simplify operations based on examination of
-					existing processes. This includes actions such as assigning
-					grades and checking for plagiarism across all
-					submissions.</p>
-
-					<footer><strong>Committed Members:</strong> Gio Borje, 
-					Ivan Check, Huy Vuong</footer>
+					<p><?= $active_project['project_desc'] ?></p>
 				</div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	</div>

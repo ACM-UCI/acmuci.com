@@ -7,4 +7,6 @@ if (!defined('IN_SITE'))
 
 require 'config.php';
 
+$db = new PDO('sqlite:db/database.db3');
+
 ?>
