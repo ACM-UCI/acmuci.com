@@ -58,7 +58,10 @@ require 'header.php';
 				</div>
 			</div>
 		</div>
-		
+	</div>
+</section>
+<section id="secondary-content">
+	<div class="inner">	
 		<div id="board" class="content-block">
 			<h2>2012-2013 Board: Who Are These Guys?</h2>
 			<p>These fine, young gentlemen here have been through best and

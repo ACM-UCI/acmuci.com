@@ -63,7 +63,10 @@ if (isset($_POST['submit'])) {
 				<li>Private Redmine project</li>
 			</ul>
 		</div>	
-
+	</div>
+</section>
+<section id="secondary-content">
+	<div class="inner">
 		<div class="content-block">
 			<div id="projects-incubator">
 				<h2>Incubator</h2>
