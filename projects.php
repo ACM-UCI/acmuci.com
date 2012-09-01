@@ -3,6 +3,10 @@ define('IN_SITE', true);
 require 'common.php';
 require 'header.php';
 
+define('PROJECT_PROPOSE', 0);
+define('PROJECT_INCUBATE', 1);
+define('PROJECT_ACTIVE', 2);
+
 $incubator_projects = array();
 $active_projects = array();
 
@@ -17,20 +21,51 @@ $active_projects = $db->query($query);
 if (isset($_POST['submit'])) {
 	$errors = '';
 
+	// Sanitize project name
+	if (!empty($_POST['project_name']))
+		$project_name = filter_var($_POST['project_name'],
+		FILTER_SANITIZE_STRING);
+	else
+		$errors .= '<p>Please enter a valid project name.</p>';
+
+	// Sanitize project contact name
+	if (!empty($_POST['project_contact_name']))
+		$project_contact_name = filter_var($_POST['project_contact_name'],
+		FILTER_SANITIZE_EMAIL);
+	else
+		$errors .= '<p>Please enter a valid project contact name.</p>';
+
+	// Sanitize project contact email
+	if (!empty($_POST['project_contact_email']))
+		$project_contact_email = filter_var($_POST['project_contact_email'], 
+		FILTER_SANITIZE_EMAIL);
+
+	// Sanitize project description
+	if (!empty($_POST['project_desc']))
+		$project_desc = filter_var($_POST['project_desc'],
+		FILTER_SANITIZE_STRING);
+	else
+		$errors .= '<p>Please enter a valid project description.</p>';
+
 	if (empty($errors)) {
-		$query = 'INSERT INTO projects (project_status, project_name,
-		project_contact_name, project_contact_email, project_desc) VALUES
-		(:project_status, :project_name, :project_contact_name,
-		:project_contact_email, :project_desc)';
+		if (!empty($project_contact_email))
+			$query = 'INSERT INTO projects (project_status, project_name,
+			project_contact_name, project_contact_email, project_desc) VALUES
+			(:project_status, :project_name, :project_contact_name,
+			:project_contact_email, :project_desc)';
+		else
+			$query = 'INSERT INTO projects (project_status, project_name,
+			project_contact_name, project_desc) VALUES (:project_status,
+			:project_name, :project_contact_name, :project_desc)';
 		$stmt = $db->prepare($query);
-		$stmt->bindParam(':project_status', $project_status, PDO::PARAM_INT);
+		$stmt->bindParam(':project_status', PROJECT_PROPOSE, PDO::PARAM_INT);
 		$stmt->bindParam(':project_name', $project_name);
 		$stmt->bindParam(':project_contact_name', $project_contact_name);
-		$stmt->bindParam(':project_contact_email', $project_contact_email);
+		if (!empty($project_contact_email))
+			$stmt->bindParam(':project_contact_email', $project_contact_email);
 		$stmt->bindParam(':project_desc', $project_desc);
 		$stmt->execute();
 	}
-
 }
 ?>
 
@@ -55,13 +90,9 @@ if (isset($_POST['submit'])) {
 			contact information is not provided, please contact the current 
 			project manager, Gio Borje for details about the project. If 
 			instead, you wish to propose a project for ACM, use the form below 
-			or simply contact the project manager, Gio Borje.</p>
-
-			<h3>Benefits of a Project with ACM</h3>
-			<ul>
-				<li>Private GitHub Repository</li>
-				<li>Private Redmine project</li>
-			</ul>
+			or simply contact the project manager, Gio Borje. All projects 
+			with ACM receive several benefits including your choice of a 
+			private GitHub repository or a private Redmine project.</p>
 		</div>	
 	</div>
 </section>
