@@ -4,27 +4,29 @@
 require_once '../../common.php';
 
 try {
-	//populate_members();
-	//install_default_projects($db, $facebook);
+	//populate_members($db, $fb);
+	//install_default_projects($db, $fb);
 
 	echo "Success";
 } catch (PDOException $e) {
 	echo $e->getMessage();
 }
 
-function populate_members(&$db, &$facbeook) {
-	$acm_group = $facebook->api('/228954137162541?fields=members.fields(name,id,administrator,link,email)');
+function populate_members(&$db, &$fb) {
+	$acm_group = $fb->api('/228954137162541?fields=members.fields(name,id,administrator,link,email)');
 	
-	$query = 'INSERT INTO members (member_name, member_role, member_link,
-	member_email) VALUES (:member_name, :member_role, :member_link,
-	:member_email)';
+	$query = 'INSERT INTO members (member_fb_id, member_name, member_role,
+	member_link, member_email) VALUES (:member_fb_id, :member_name,
+	:member_role, :member_link, :member_email)';
 	$stmt = $db->prepare($query);
+	$stmt->bindParam(':member_fb_id', $member_fb_id);
 	$stmt->bindParam(':member_name', $member_name);
 	$stmt->bindParam(':member_role', $member_role);
 	$stmt->bindParam(':member_link', $member_link);
 	$stmt->bindParam(':member_email', $member_email);
 
 	foreach ($acm_group['members']['data'] as $member) {
+		$member_fb_id = $member['id'];
 		$member_name = $member['name'];
 		$member_role = ($member['administrator']) ? 1 : 0;
 		$member_link = (!empty($member['link'])) ? $member['link'] : '';
@@ -33,7 +35,7 @@ function populate_members(&$db, &$facbeook) {
 	}
 }
 
-function install_default_projects(&$db, &$facbeook) {
+function install_default_projects(&$db, &$fb) {
 	$query = 'INSERT INTO projects (project_status, project_name, project_desc,
 	project_contact_id) VALUES (:project_status, :project_name, :project_desc,
 	:project_contact_id)';

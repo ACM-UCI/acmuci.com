@@ -1,7 +1,7 @@
 <?php
 define('IN_SITE', true); 
-require 'common.php';
-require 'header.php'; 
+require_once 'common.php';
+require_once 'header.php'; 
 ?>
 
 <section id="content" class="home">
@@ -90,4 +90,4 @@ require 'header.php';
 	</div>
 </section>
 
-<?php require 'footer.php'; ?>
+<?php require_once 'footer.php'; ?>

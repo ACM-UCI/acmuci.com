@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS projects (
 
 CREATE TABLE IF NOT EXISTS members (
 	member_id INTEGER NOT NULL,
+	member_fb_id INTEGER NOT NULL,
 	member_name VARCHAR(100) NOT NULL,
 	member_role INTEGER NOT NULL DEFAULT '0',
 	member_link VARCHAR(100), -- optional contact information

@@ -16,12 +16,12 @@ $user_agent_checker = array(
 
 <?php if ($user_agent_checker['iphone'] || $user_agent_checker['android']): ?>
 <meta name="HandheldFriendly" content="true" />
-<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
-<link rel="stylesheet" type="text/css" href="styles/mobi.css"
-media="all" />
+<meta name="viewport" content="width=device-width, height=device-height,
+user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="styles/mobi.css" media="all" />
 <?php else: ?>
-<link rel="stylesheet" type="text/css" href="styles/style.css"
-media="screen" />
+<link rel="stylesheet" type="text/css" href="styles/style.css" media="screen"
+/>
 <?php endif; ?>
 
 </head>

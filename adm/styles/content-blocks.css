@@ -1,0 +1,114 @@
+/* =SECTIONS
+   --------- */
+
+section { margin: 0; }
+
+section#content {
+	background: #F0F0F6;
+}
+
+section#secondary-content {
+	background-color: #FFF;
+}
+
+/* =COLLECTIONS
+   ------------ */
+
+.collection .member {
+	float: left;
+	margin: 0 20px 0 0;
+}
+
+.collection .member:last-child { margin-right: 0; }
+
+.collection .member img {
+	padding: 10px;
+	background-color: #E0E0E0;
+}
+
+.collection .member h4 {
+	font: 14px "Aller";
+	text-align: center;
+}
+
+.collection .member span {
+	display: block;
+	font-size: 12px;
+	text-align: center;
+}
+
+/* =ACITIVITIES
+   ------------ */
+
+#activities .collection { 
+	overflow: hidden;
+	margin: 24px 0 0;
+}
+
+#activities .collection .activity {
+	float: left;
+	width: 435px;
+	overflow: hidden;
+	margin: 24px 40px 24px 0;
+}
+
+#activities .collection .activity:nth-child(2n+2) { margin-right: 0; }
+
+#activities .collection .activity img { 
+	float: left;
+	margin-right: 32px;
+}
+
+#activities .collection .activity p { 
+	float: right;
+	width: 275px;
+}
+
+/* =PROJECTS
+   --------- */
+
+#projects-incubator {
+	float: left;
+	width: 415px;
+	margin-right: 39px;
+}
+
+#projects-active {
+	float: left;
+	width: 415px;
+	padding-left: 40px;
+	border-left: 1px solid #C0C0C0;
+}
+
+.project {
+	position: relative;
+	margin-bottom: 24px;
+	padding-bottom: 11px;
+	border-bottom: 1px dotted #C0C0C0;
+}
+
+.project footer {
+	color: #606060;
+}
+
+.project footer dl dt {
+	display: inline-block;
+	float: left;
+	clear: left;
+	margin: 0 12px 6px 0;
+	padding: 2px 8px;
+	font-size: 12px;
+	text-transform: capitalize;
+	background-color: #E0E0E6;
+}
+
+.project footer dl dd {
+	display: inline-block;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+.project footer dl {
+	overflow: hidden;
+}
