@@ -11,11 +11,25 @@ $incubator_projects = array();
 $active_projects = array();
 
 // Retrieve projects in incubation
-$query = 'SELECT * FROM projects WHERE project_status=1';
+$query = 'SELECT p.project_name, p.project_desc, 
+	m.member_name as project_contact_name,
+	m.member_link as project_contact_link,
+	m.member_email as project_contact_email
+	FROM projects as p
+	LEFT JOIN members as m 
+		ON p.project_contact_id = m.member_id
+	WHERE project_status = 1';
 $incubator_projects = $db->query($query);
 
 // Retrieve active projects
-$query = 'SELECT * FROM projects WHERE project_status=2';
+$query = 'SELECT p.project_name, p.project_desc, 
+	m.member_name as project_contact_name,
+	m.member_link as project_contact_link,
+	m.member_email as project_contact_email
+	FROM projects as p
+	LEFT JOIN members as m 
+		ON p.project_contact_id = m.member_id
+	WHERE project_status = 2';
 $active_projects = $db->query($query);
 
 if (isset($_POST['submit'])) {
@@ -107,8 +121,10 @@ if (isset($_POST['submit'])) {
 					<footer>
 						<dl>
 							<dt>Contact Name</dt>
-							<dd><?= $incubator_project['project_contact_name']
-							?></dd>
+							<dd><a href="<?=
+							$incubator_project['project_contact_link'] ?>"><?=
+							$incubator_project['project_contact_name']
+							?></a></dd>
 							<?php if
 							(isset($incubator_project['project_contact_email'])):
 							?>
@@ -154,8 +170,8 @@ if (isset($_POST['submit'])) {
 					<footer>
 						<dl>
 							<dt>Contact Name</dt>
-							<dd><?= $active_project['project_contact_name']
-							?></dd>
+							<dd><a href="<?= $active_project['project_contact_link'] ?>"><?= $active_project['project_contact_name']
+							?></a></dd>
 							<?php if
 							(isset($active_project['project_contact_email'])):
 							?>
