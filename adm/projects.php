@@ -13,22 +13,9 @@ $query = 'SELECT p.project_name, p.project_desc,
 	WHERE project_status = 0';
 $proposed_projects = $db->query($query);
 
-$user = $fb->getUser();
-if (!$user) {
-	$login_url = $fb->getLoginUrl(array(
-		redirect_uri => 'http://localhost/nginx/newacm/adm/projects.php'
-	));
-} else {
+if ($user) {
 	$logged_in = true;
-	$user_info = $fb->api("/$user");
-	$query = 'SELECT *
-		FROM members
-		WHERE member_fb_id = :user_id';
-	$stmt = $db->prepare($query);
-	$stmt->bindParam(':user_id', $user_info['id']);
-	$stmt->execute();
-	$member = $stmt->fetch();
-	if ($member['member_role'] == 1)
+	if ($user_info['member_role'] == 1)
 		$is_admin = true;
 }
 

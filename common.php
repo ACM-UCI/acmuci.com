@@ -15,4 +15,32 @@ $fb = new Facebook(array(
 	'secret' => FB_SECRET
 ));
 
+if (!session_id())
+	session_start();
+
+$user = $fb->getUser();
+$logged_in = false;
+
+if (!$user) {
+	$login_url = $fb->getLoginUrl(array(
+		redirect_uri => 'http://' . $_SERVER['HTTP_HOST'] .
+		$_SERVER['REQUEST_URI']
+	));
+} else if (empty($_SESSION['user_info'])) {
+	$logged_in = true;
+	$user_info = $fb->api("/$user");
+
+	$query = 'SELECT *
+		FROM members
+		WHERE member_fb_id = :user_id';
+	$stmt = $db->prepare($query);
+	$stmt->bindParam(':user_id', $user_info['id']);
+	$stmt->execute();
+	$member = $stmt->fetch();
+	$user_info = array_merge($user_info, $member);
+	$_SESSION['user_info'] = $user_info;
+} else {
+	$user_info = $_SESSION['user_info'];
+}
+
 ?>

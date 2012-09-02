@@ -1,7 +1,7 @@
 <?php
 define('IN_SITE', true);
-require 'common.php';
-require 'header.php';
+require_once 'common.php';
+require_once 'header.php';
 
 define('PROJECT_PROPOSE', 0);
 define('PROJECT_INCUBATE', 1);
@@ -42,18 +42,6 @@ if (isset($_POST['submit'])) {
 	else
 		$errors .= '<p>Please enter a valid project name.</p>';
 
-	// Sanitize project contact name
-	if (!empty($_POST['project_contact_name']))
-		$project_contact_name = filter_var($_POST['project_contact_name'],
-		FILTER_SANITIZE_EMAIL);
-	else
-		$errors .= '<p>Please enter a valid project contact name.</p>';
-
-	// Sanitize project contact email
-	if (!empty($_POST['project_contact_email']))
-		$project_contact_email = filter_var($_POST['project_contact_email'], 
-		FILTER_SANITIZE_EMAIL);
-
 	// Sanitize project description
 	if (!empty($_POST['project_desc']))
 		$project_desc = filter_var($_POST['project_desc'],
@@ -62,23 +50,24 @@ if (isset($_POST['submit'])) {
 		$errors .= '<p>Please enter a valid project description.</p>';
 
 	if (empty($errors)) {
-		if (!empty($project_contact_email))
+		$project_status = PROJECT_PROPOSE;
+
+		try {
 			$query = 'INSERT INTO projects (project_status, project_name,
-			project_contact_name, project_contact_email, project_desc) VALUES
-			(:project_status, :project_name, :project_contact_name,
-			:project_contact_email, :project_desc)';
-		else
-			$query = 'INSERT INTO projects (project_status, project_name,
-			project_contact_name, project_desc) VALUES (:project_status,
-			:project_name, :project_contact_name, :project_desc)';
-		$stmt = $db->prepare($query);
-		$stmt->bindParam(':project_status', PROJECT_PROPOSE, PDO::PARAM_INT);
-		$stmt->bindParam(':project_name', $project_name);
-		$stmt->bindParam(':project_contact_name', $project_contact_name);
-		if (!empty($project_contact_email))
-			$stmt->bindParam(':project_contact_email', $project_contact_email);
-		$stmt->bindParam(':project_desc', $project_desc);
-		$stmt->execute();
+			project_desc, project_contact_id) VALUES (:project_status,
+			:project_name, :project_desc, :project_contact_id)';
+			$stmt = $db->prepare($query);
+			$stmt->bindParam(':project_status', $project_status, PDO::PARAM_INT);
+			$stmt->bindParam(':project_name', $project_name);
+			$stmt->bindParam(':project_desc', $project_desc);
+			$stmt->bindParam(':project_contact_id', $user_info['member_id']);
+			$status = $stmt->execute();
+
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+		}
+	} else {
+		echo $errors;
 	}
 }
 ?>
@@ -126,7 +115,7 @@ if (isset($_POST['submit'])) {
 							$incubator_project['project_contact_name']
 							?></a></dd>
 							<?php if
-							(isset($incubator_project['project_contact_email'])):
+							(!empty($incubator_project['project_contact_email'])):
 							?>
 							<dt>Contact Email</dt>
 							<dd><?= $incubator_project['project_contact_email']
@@ -139,27 +128,24 @@ if (isset($_POST['submit'])) {
 				<?php endforeach; ?>
 
 				<h2>Project Proposal</h2>
+				<?php if (!$user): ?>
+				<p>Please <a href="<?= $login_url ?>">login</a> to propose a
+				project.</p>
+				<?php else: ?>
 				<form id="new-project" action="projects.php" method="POST">
 					<p>
-						<label for="name">Project Name</label><br />
-						<input name="name" type="text"  required/>
+						<label for="project_name">Project Name</label><br />
+						<input name="project_name" type="text"  required/>
 					</p>
 					<p>
-						<label for="contact_name">Contact Name</label><br />
-						<input name="contact_name" type="text" required/>
-					</p>
-					<p>
-						<label for="contact_email">Contact Email</label><br />
-						<input name="contact_email" type="email" required/>
-					</p>
-					<p>
-						<label for="desc">Description</label><br />
-						<textarea name="desc" required></textarea>
+						<label for="project_desc">Description</label><br />
+						<textarea name="project_desc" required></textarea>
 					</p>
 					<p>
 						<input type="submit" name="submit" value="Submit" />
 					</p>
 				</form>
+				<?php endif; ?>
 			</div>
 
 			<div id="projects-active">
@@ -170,10 +156,14 @@ if (isset($_POST['submit'])) {
 					<footer>
 						<dl>
 							<dt>Contact Name</dt>
-							<dd><a href="<?= $active_project['project_contact_link'] ?>"><?= $active_project['project_contact_name']
-							?></a></dd>
+							<dd>
+								<a href="<?=
+								$active_project['project_contact_link'] ?>"><?=
+								$active_project['project_contact_name']
+							?></a>
+							</dd>
 							<?php if
-							(isset($active_project['project_contact_email'])):
+							(!empty($active_project['project_contact_email'])):
 							?>
 							<dt>Contact Email</dt>
 							<dd><?= $active_project['project_contact_email']
@@ -189,4 +179,4 @@ if (isset($_POST['submit'])) {
 	</div>
 </section>
 
-<?php require 'footer.php'; ?>
+<?php require_once 'footer.php'; ?>
