@@ -3,6 +3,8 @@ define('IN_SITE', true);
 require_once 'common.php';
 require_once 'header.php';
 
+include APP_MODELS . 'Project.php';
+
 define('PROJECT_PROPOSE', 0);
 define('PROJECT_INCUBATE', 1);
 define('PROJECT_ACTIVE', 2);
@@ -33,41 +35,30 @@ $query = 'SELECT p.project_name, p.project_desc,
 $active_projects = $db->query($query);
 
 if (isset($_POST['submit'])) {
-	$errors = '';
-
 	// Sanitize project name
-	if (!empty($_POST['project_name']))
-		$project_name = filter_var($_POST['project_name'],
-		FILTER_SANITIZE_STRING);
-	else
-		$errors .= '<p>Please enter a valid project name.</p>';
+	$project_name = filter_var($_POST['project_name'], FILTER_SANITIZE_STRING);
 
 	// Sanitize project description
-	if (!empty($_POST['project_desc']))
-		$project_desc = filter_var($_POST['project_desc'],
-		FILTER_SANITIZE_STRING);
-	else
-		$errors .= '<p>Please enter a valid project description.</p>';
+	$project_desc = filter_var($_POST['project_desc'], FILTER_SANITIZE_STRING);
 
-	if (empty($errors)) {
-		$project_status = PROJECT_PROPOSE;
+	$project = new Project(PROJECT_PROPOSE, $project_name, $project_desc,
+	$user_info['member_id']);
 
+	if ($project->validate()) {
 		try {
 			$query = 'INSERT INTO projects (project_status, project_name,
 			project_desc, project_contact_id) VALUES (:project_status,
 			:project_name, :project_desc, :project_contact_id)';
-			$stmt = $db->prepare($query);
-			$stmt->bindParam(':project_status', $project_status, PDO::PARAM_INT);
-			$stmt->bindParam(':project_name', $project_name);
-			$stmt->bindParam(':project_desc', $project_desc);
-			$stmt->bindParam(':project_contact_id', $user_info['member_id']);
-			$status = $stmt->execute();
-
+			$stmt = $db->prepare($query); $stmt->bindParam(':project_status',
+			$project->project_status, PDO::PARAM_INT);
+			$stmt->bindParam(':project_name', $project->project_name);
+			$stmt->bindParam(':project_desc', $project->project_desc);
+			$stmt->bindParam(':project_contact_id',
+			$project->project_contact_id);
+			$stmt->execute();
 		} catch (PDOException $e) {
 			echo $e->getMessage();
 		}
-	} else {
-		echo $errors;
 	}
 }
 ?>
