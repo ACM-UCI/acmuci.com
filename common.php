@@ -2,6 +2,7 @@
 
 define('APP_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 define('APP_LIBS', APP_ROOT . 'libs' . DIRECTORY_SEPARATOR);
+define('APP_MODELS', APP_ROOT . 'models' . DIRECTORY_SEPARATOR);
 
 require_once APP_ROOT . 'config.php';
 
