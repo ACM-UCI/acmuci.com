@@ -3,6 +3,11 @@
 require 'Validatable.php';
 
 class Member extends Validatable {
+	const TABLE_NAME = 'members';
+
+	const ROLE_MEMBER = 0;
+	const ROLE_ADMIN = 1;
+
 	public $member_id;
 	public $member_name;
 	public $member_fb_id;
@@ -34,11 +39,44 @@ class Member extends Validatable {
 		if (!filter_var($this->member_role, FILTER_VALIDATE_INT,
 			$member_role_options))
 			$this->addError('Member role is invald');
-		if (!filter_var($this->member_link, FILTER_VALIDATE_URL))
+		if (!empty($this->member_link) && !filter_var($this->member_link,
+			FILTER_VALIDATE_URL))
 			$this->addError('Member link must be a valid URL');
-		if (!filter_var($this->member_email, FILTER_VALIDATE_EMAIL))
+		if (!empty($this->member_email) && !filter_var($this->member_email,
+			FILTER_VALIDATE_EMAIL))
 			$this->addError('Member email must be a valid email');
 		return empty($this->errors);
+	}
+
+	public function sanitize() {
+		$this->member_name = filter_var($this->member_name,
+		FILTER_SANITIZE_STRING);
+		$this->member_fb_id = filter_var($this->member_fb_id,
+		FILTER_SANITIZE_INT);
+		$this->member_role = filter_var($this->member_role,
+		FILTER_SANITIZE_INT);
+		$this->member_link = filter_var($this->member_link,
+		FILTER_SANITIZE_URL);
+		$this->member_email = filter_var($this->member_email,
+		FILTER_SANITIZE_EMAIL);
+	}
+
+	public function create() {
+		$this->sanitize();
+		if (!$this->validate())
+			return false;
+		$query = 'INSERT INTO ' . self::TABLE_NAME . ' (member_name,
+		member_fb_id, member_role, member_link, member_email) VALUES
+		(:member_name, :member_fb_id, :member_role, :member_link,
+		:member_email)';
+		$stmt = $db->prepare($query);
+		$stmt->bindParam(':member_name', $this->member_name);
+		$stmt->bindParam(':member_fb_id', $this->member_fb_id);
+		$stmt->bindParam(':member_role', $this->member_role);
+		$stmt->bindParam(':member_link', $this->member_link);
+		$stmt->bindParam(':member_email', $this->member_email);
+		$stmt->execute();
+		return true;
 	}
 }
 
