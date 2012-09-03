@@ -3,6 +3,12 @@
 require 'Validatable.php';
 
 class Project extends Validatable {
+	const TABLE_NAME = 'projects';
+
+	const STATUS_PROPOSE = 0;
+	const STATUS_INCUBATE = 1;
+	const STATUS_ACTIVE = 2;
+
 	public $project_id;
 	public $project_status;
 	public $project_name;
@@ -28,6 +34,26 @@ class Project extends Validatable {
 		if (!filter_var($this->project_contact_id, FILTER_VALIDATE_INT))
 			$this->addError('Project must have a contact');
 		return empty($this->errors);
+	}
+
+	public function create() {
+		if (!$this->validate())
+			return false;
+		try {
+			$query = 'INSERT INTO ' . self::TABLE_NAME . ' (project_status,
+			project_name, project_desc, project_contact_id) VALUES (\'' .
+			self::STATUS_PROPOSE . '\', :project_name, :project_desc,
+			:project_contact_id)';
+			$stmt = $GLOBALS['db']->prepare($query);
+			$stmt->bindParam(':project_name', $this->project_name);
+			$stmt->bindParam(':project_desc', $this->project_desc);
+			$stmt->bindParam(':project_contact_id', $this->project_contact_id,
+			PDO::PARAM_INT);
+			$stmt->execute();
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+		}
+		return true;
 	}
 }
 

@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../common.php';
+
 abstract class Validatable {
 	private $errors;
 
