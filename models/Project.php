@@ -49,11 +49,21 @@ class Project extends Validatable {
 			$stmt->bindParam(':project_desc', $this->project_desc);
 			$stmt->bindParam(':project_contact_id', $this->project_contact_id,
 			PDO::PARAM_INT);
-			$stmt->execute();
+			return $stmt->execute();
 		} catch (PDOException $e) {
 			echo $e->getMessage();
+			return false;
 		}
-		return true;
+	}
+
+	public static function read($project_id) {
+		$query = 'SELECT * FROM ' . self::TABLE_NAME . ' WHERE project_id =
+		:project_id';
+		$stmt = $GLOBALS['db']->prepare($query);
+		$stmt->bindParam(':project_id', $project_id, PDO::PARAM_INT);
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Project');
+		return ($stmt->rowCount === 1) ? $stmt->fetch() : null;
 	}
 }
 

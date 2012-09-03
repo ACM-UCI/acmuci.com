@@ -69,14 +69,23 @@ class Member extends Validatable {
 		member_fb_id, member_role, member_link, member_email) VALUES
 		(:member_name, :member_fb_id, :member_role, :member_link,
 		:member_email)';
-		$stmt = $db->prepare($query);
+		$stmt = $GLOBALS['db']->prepare($query);
 		$stmt->bindParam(':member_name', $this->member_name);
 		$stmt->bindParam(':member_fb_id', $this->member_fb_id);
 		$stmt->bindParam(':member_role', $this->member_role);
 		$stmt->bindParam(':member_link', $this->member_link);
 		$stmt->bindParam(':member_email', $this->member_email);
+		return $stmt->execute();
+	}
+
+	public static function read($member_id) {
+		$query = 'SELECT * FROM ' . self::TABLE_NAME . ' WHERE member_id =
+		:member_id';
+		$stmt = $GLOBALS['db']->prepare($query);
+		$stmt->bindParam(':member_id', $member_id, PDO::PARAM_INT);
 		$stmt->execute();
-		return true;
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Member');
+		return ($stmt->rowCount === 1) ? $stmt->fetch() : null;
 	}
 }
 
