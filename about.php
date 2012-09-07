@@ -118,8 +118,8 @@ require 'header.php';
 			that support our efforts: <a
 			href="http://www.cogitolingua.net/blog/" title="Eric Hennigan"
 			target="_blank">Eric Hennigan</a> for moral support, Alex Thornton
-			for organization advice, Dan Hirschberg for algorithm help to name
-			a few.</p>
+			for organization advice, Dan Hirschberg for algorithm help, and
+			Richard Pattis as our faculty adviser.</p>
 		</div>
 
 		<div id="what_is" class="content-block">

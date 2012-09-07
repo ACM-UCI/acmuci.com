@@ -1,7 +1,7 @@
 <?php
 
 // Note that libcurl3 and libcurl3-dev required
-require_once '../../common.php';
+require_once __DIR__ . '/../../common.php';
 
 try {
 	//populate_members($db, $fb);
