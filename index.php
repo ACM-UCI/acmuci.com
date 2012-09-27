@@ -9,7 +9,7 @@ require_once 'header.php';
 		<div id="events-stream">
 			<h2>Events</h2>
 			<article>
-				<footer>Week 1: Thursday <a
+				<footer>Week 0: Thursday <a
 				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
 				target="_blank">@DBH4011</a></footer>
 				<h3>General Meeting</h3>
@@ -17,25 +17,25 @@ require_once 'header.php';
 				year.</p>
 			</article>
 			<article>
-				<footer>Week 2: Thursday <a
+				<footer>Week 1: Thursday <a
 				href="http://www.uci.edu/campusmap/map.php?l=1@DBH1300q=314"
 				target="_blank">@DBH4011</a></footer>
-				<h3>DHTML, CSS3, XML, and AJAX Workshop</h3>
-				<p>For intermediate and advanced users.</p>
+				<h3>Win8 App Resources</h3>
+				<p>Receiving the resources necessary for developing applications.</p>
+			</article>
+			<article>
+				<footer>Week 2: Thursday <a
+				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
+				target="_blank">@DBH4011</a></footer>
+				<h3>Win8 App Workshop</h3>
+				<p>Workshop for getting started with Windows 8 development.</p>
 			</article>
 			<article>
 				<footer>Week 3: Thursday <a
 				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
-				target="_blank">@DBH4011</a></footer>
-				<h3>Bookbinding Workshop</h3>
-				<p>Cooperative with DATspace.</p>
-			</article>
-			<article>
-				<footer>Week 4: Thursday <a
-				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
-				target="_blank">@DBH4011</a></footer>
-				<h3>C++ Memory Manipulation</h3>
-				<p>For advanced users.</p>
+				target="_blank">@AV1074</a></footer>
+				<h3>ICS BBQ</h3>
+				<p>Barbecue at the ICS House in Arroyo Vista.</p>
 			</article>
 		</div>
 
