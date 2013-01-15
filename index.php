@@ -7,36 +7,7 @@ require_once 'header.php';
 <section id="content" class="home">
 	<div class="inner">
 		<div id="events-stream">
-			<h2>Events</h2>
-			<article>
-				<footer>Week 0: Thursday <a
-				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
-				target="_blank">@DBH4011</a></footer>
-				<h3>General Meeting</h3>
-				<p>First Meeting of Fall Quarter and the 2012-2013 school
-				year.</p>
-			</article>
-			<article>
-				<footer>Week 1: Thursday <a
-				href="http://www.uci.edu/campusmap/map.php?l=1@DBH1300q=314"
-				target="_blank">@DBH4011</a></footer>
-				<h3>Win8 App Resources</h3>
-				<p>Receiving the resources necessary for developing applications.</p>
-			</article>
-			<article>
-				<footer>Week 2: Thursday <a
-				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
-				target="_blank">@DBH4011</a></footer>
-				<h3>Win8 App Workshop</h3>
-				<p>Workshop for getting started with Windows 8 development.</p>
-			</article>
-			<article>
-				<footer>Week 3: Thursday <a
-				href="http://www.uci.edu/campusmap/map.php?l=1&q=314"
-				target="_blank">@AV1074</a></footer>
-				<h3>ICS BBQ</h3>
-				<p>Barbecue at the ICS House in Arroyo Vista.</p>
-			</article>
+			<?php include 'mod/events/events.php'; ?>
 		</div>
 
 		<div id="main-stream">
@@ -64,12 +35,10 @@ require_once 'header.php';
 				</article>
 				
 				<article>
-					<footer>January</footer>
-					<h3><a href="http://web.mit.edu/edgerton/battlebots/"
-					title="MIT Battlebots" target="_blank">MIT
-					Battlebots</a></h3>
-					<p>Develop an artificially intelligent player and have it
-					compete against others on a strategic board.</p>
+					<footer>February</footer>
+					<h3><a href="https://www.hackerrank.com/backtoschool"
+					title="HackerRank Back to School Competition" target="_blank">HackerRank</a></h3>
+					<p>Web-based AI challenge. Cash prizes are up to $2k and the top 10 hackers win an all expenses paid-trip to Silicon Valley.</p>
 				</article>
 			</div>
 

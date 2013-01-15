@@ -5,6 +5,8 @@ require_once __DIR__ . '/../../common.php';
 
 try {
 	//populate_members($db, $fb);
+	//install_default_events($db);
+	//install_default_locations($db);
 	//install_default_projects($db, $fb);
 
 	echo "Success";
@@ -66,6 +68,84 @@ function install_default_projects(&$db, &$fb) {
 	$project_desc = 'Develop a mobile application to that marks the nearest
 	wireless charging location in UC Irvine.'; 
 	$project_contact_id = 30;
+	$stmt->execute();
+}
+
+function install_default_locations(&$db) {
+	$query = 'INSERT INTO locations (bldg_id, location_full_name, location_short_name)
+	VALUES (:bldg_id, :location_full_name, :location_short_name)';
+	$stmt = $db->prepare($query);
+	$stmt->bindParam(':bldg_id', $bldg_id);
+	$stmt->bindParam(':location_full_name', $location_full_name);
+	$stmt->bindParam(':location_short_name', $location_short_name);
+
+	$bldg_id = 113;
+	$location_full_name = 'Courtyard Study Lounge';
+	$location_short_name = 'CSL';
+	$stmt->execute();
+	
+	$bldg_id = 314;
+	$location_full_name = 'Donald Bren Hall';
+	$location_short_name = 'DBH';
+	$stmt->execute();
+
+	$bldg_id = 302;
+	$location_full_name = 'Information and Computer Sciences';
+	$location_short_name = 'ICS';
+	$stmt->execute();
+
+	$bldg_id = 308;
+	$location_full_name = 'Engineering Hall';
+	$location_short_name = 'EH';
+	$stmt->execute();
+
+	$bldg_id = 321;
+	$location_full_name = 'Engineering Gateway';
+	$location_short_name = 'EG';
+	$stmt->execute();
+}
+
+function install_default_events(&$db) {
+	$query = 'INSERT INTO events (event_name, event_desc, event_week, event_day, event_room_id, event_bldg_id) 
+		VALUES (:event_name, :event_desc, :event_week, :event_day, :event_room_id, :event_bldg_id)';
+
+	$stmt = $db->prepare($query);
+	if ($stmt == null) {
+		echo 'Null';
+		exit;
+	}
+	$stmt->bindParam(':event_name', $event_name);
+	$stmt->bindParam(':event_desc', $event_desc);
+	$stmt->bindParam(':event_week', $event_week);
+	$stmt->bindParam(':event_day', $event_day);
+	$stmt->bindParam(':event_room_id', $event_room_id);
+	$stmt->bindParam(':event_bldg_id', $event_bldg_id);
+
+	$event_room_id = 15;
+	$event_bldg_id = 113;
+
+	$event_week = 2;
+
+	$event_name = 'Algorithm Practice 2A';
+	$event_desc = 'Second set of competition practice sessions for HackerRank.';
+	$event_day = 1;
+	$stmt->execute();
+	
+	$event_name = 'Algorithm Practice 2B';
+	$event_desc = 'Second set of competition practice sessions for HackerRank.';
+	$event_day = 4;
+	$stmt->execute();
+
+	$event_week = 3;
+
+	$event_name = 'Algorithm Practice 3A';
+	$event_desc = 'Second set of competition practice sessions for HackerRank.';
+	$event_day = 4;
+	$stmt->execute();
+
+	$event_name = 'Algorithm Practice 3B';
+	$event_desc = 'Second set of competition practice sessions for HackerRank.';
+	$event_day = 4;
 	$stmt->execute();
 }
 

@@ -24,7 +24,7 @@ $logged_in = false;
 
 if (!$user) {
 	$login_url = $fb->getLoginUrl(array(
-		redirect_uri => 'http://' . $_SERVER['HTTP_HOST'] .
+		$redirect_uri => 'http://' . $_SERVER['HTTP_HOST'] .
 		$_SERVER['REQUEST_URI']
 	));
 } else if (empty($_SESSION['user_info'])) {

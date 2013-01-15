@@ -61,7 +61,7 @@ if (isset($_POST['send'])) {
 					(!empty($errors) && isset($_POST['message'])) ? $message :
 					''; ?></textarea> </p>
 				<p>
-					<input type="submit" name="send" val="Send" />
+					<input type="submit" name="send" value="Send" />
 				</p>
 
 				<?php 

@@ -31,17 +31,20 @@ CREATE TABLE IF NOT EXISTS events (
 	event_id INTEGER NOT NULL,
 	event_name VARCHAR(100) NOT NULL,
 	event_desc TEXT NOT NULL,
+
+	-- Event schedule
+	event_week INTEGER NOT NULL,
+	event_day INTEGER NOT NULL,
+
 	event_room_id INTEGER NOT NULL,
 	event_bldg_id INTEGER NOT NULL,
 	PRIMARY KEY (event_id),
-	FOREIGN KEY (event_room_id, event_bldg_id) REFERENCES locations (room_id,
-	bldg_id)
+	FOREIGN KEY (event_bldg_id) REFERENCES locations (bldg_id)
 );
 
-CReATE TABLE IF NOT EXISTS locations (
-	room_id INTEGER NOT NULL,
+CREATE TABLE IF NOT EXISTS locations (
 	bldg_id INTEGER NOT NULL,
 	location_full_name VARCHAR(100) NOT NULL,
 	location_short_name VARCHAR(45) NOT NULL,
-	PRIMARY KEY (room_id, bldg_id)
+	PRIMARY KEY (bldg_id)
 );
