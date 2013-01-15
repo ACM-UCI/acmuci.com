@@ -25,11 +25,14 @@ header#page-header {
 	color: #FFF;
 }
 
-
 header#page-header .inner {
 	margin: 0 auto;
 	padding: 24px 0 48px;
 	background: url("images/special_banner.png") scroll	no-repeat;
+}
+
+header#page-header.adm .inner {
+	padding: 24px 0;
 }
 
 header#page-header #meta { overflow: hidden; }

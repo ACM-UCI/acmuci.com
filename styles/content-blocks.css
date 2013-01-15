@@ -112,3 +112,18 @@ section#secondary-content {
 .project footer dl {
 	overflow: hidden;
 }
+
+/* =ADM-EVENTS
+   ----------- */
+
+#adm-events article {
+	margin-bottom: 1em;
+	padding: 24px 48px;
+	background: #E0E0E6;
+	border: 0;
+	border-radius: 5px;
+}
+
+#adm-events article p:last-child {
+	margin-bottom: 0;
+}

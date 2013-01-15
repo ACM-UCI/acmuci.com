@@ -19,7 +19,7 @@ if ($user) {
 		$is_admin = true;
 }
 
-require APP_ROOT . 'header.php';
+require APP_ROOT . 'adm/adm_header.php';
 
 ?>
 
@@ -27,7 +27,7 @@ require APP_ROOT . 'header.php';
 	<div class="inner">
 		<div class="content-block">
 			<?php if (!$logged_in): ?>
-				<a href="<?= $login_url ?>">Login</a>
+				<a class="simple_button" href="<?= $login_url ?>">Facebook Login</a>
 			<?php elseif (!$is_admin): ?>
 				<p>You are not an administrator.</p>
 			<?php else: ?>
