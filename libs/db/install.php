@@ -121,24 +121,24 @@ function install_default_events(&$db) {
 
 	$event_name = 'Algorithm Practice 2A';
 	$event_desc = 'Second set of competition practice sessions for HackerRank.';
-	$event_datetime = '2013-1-15 07:00:00';
+	$event_datetime = '2013-1-14 19:00:00';
 	$stmt->execute();
 	
 	$event_name = 'Algorithm Practice 2B';
 	$event_desc = 'Second set of competition practice sessions for HackerRank.';
-	$event_datetime = '2013-1-22 07:00:00';
+	$event_datetime = '2013-1-17 19:00:00';
 	$stmt->execute();
 
 	$event_week = 3;
 
 	$event_name = 'Algorithm Practice 3A';
 	$event_desc = 'Second set of competition practice sessions for HackerRank.';
-	$event_datetime = '2013-1-23 07:00:00';
+	$event_datetime = '2013-1-21 19:00:00';
 	$stmt->execute();
 
 	$event_name = 'Algorithm Practice 3B';
 	$event_desc = 'Second set of competition practice sessions for HackerRank.';
-	$event_datetime = '2013-1-25 07:00:00';
+	$event_datetime = '2013-1-24 19:00:00';
 	$stmt->execute();
 }
 
