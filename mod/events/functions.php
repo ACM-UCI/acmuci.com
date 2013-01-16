@@ -1,17 +1,14 @@
 <?php
 
-function getDay($day_code) {
-	switch ($day_code) {
-		case 0: return 'Sunday';
-		case 1: return 'Monday';
-		case 2: return 'Tuesday';
-		case 3: return 'Wednesday';
-		case 4: return 'Thursday';
-		case 5: return 'Friday';
-		case 6: return 'Saturday';
-	}
+define('EVENT_ISO_DATE_FMT', 'Y-m-d');
+define('EVENT_ISO_TIME_FMT', 'H:i:s');
+define('EVENT_DATETIME_FMT', 'M. d, Y');
+
+function printDateTime($event_datetime) {
+	$datetime = new DateTime($event_datetime);
+	echo $datetime->format(EVENT_DATETIME_FMT);
 }
 
-define('EVENT_DATE_FMT', 'Week %d: %s');
+$now = new DateTime('now');
 
 ?>

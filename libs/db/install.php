@@ -106,46 +106,39 @@ function install_default_locations(&$db) {
 }
 
 function install_default_events(&$db) {
-	$query = 'INSERT INTO events (event_name, event_desc, event_week, event_day, event_room_id, event_bldg_id) 
-		VALUES (:event_name, :event_desc, :event_week, :event_day, :event_room_id, :event_bldg_id)';
+	$query = 'INSERT INTO events (event_name, event_desc, event_datetime, event_room_id, event_bldg_id) 
+		VALUES (:event_name, :event_desc, :event_datetime, :event_room_id, :event_bldg_id)';
 
 	$stmt = $db->prepare($query);
-	if ($stmt == null) {
-		echo 'Null';
-		exit;
-	}
 	$stmt->bindParam(':event_name', $event_name);
 	$stmt->bindParam(':event_desc', $event_desc);
-	$stmt->bindParam(':event_week', $event_week);
-	$stmt->bindParam(':event_day', $event_day);
-	$stmt->bindParam(':event_room_id', $event_room_id);
-	$stmt->bindParam(':event_bldg_id', $event_bldg_id);
+	$stmt->bindParam(':event_datetime', $event_datetime);
+	$stmt->bindParam(':event_room_id', $event_room_id, PDO::PARAM_INT);
+	$stmt->bindParam(':event_bldg_id', $event_bldg_id, PDO::PARAM_INT);
 
 	$event_room_id = 15;
 	$event_bldg_id = 113;
 
-	$event_week = 2;
-
 	$event_name = 'Algorithm Practice 2A';
 	$event_desc = 'Second set of competition practice sessions for HackerRank.';
-	$event_day = 1;
+	$event_datetime = '2013-1-15 07:00:00';
 	$stmt->execute();
 	
 	$event_name = 'Algorithm Practice 2B';
 	$event_desc = 'Second set of competition practice sessions for HackerRank.';
-	$event_day = 4;
+	$event_datetime = '2013-1-22 07:00:00';
 	$stmt->execute();
 
 	$event_week = 3;
 
 	$event_name = 'Algorithm Practice 3A';
 	$event_desc = 'Second set of competition practice sessions for HackerRank.';
-	$event_day = 4;
+	$event_datetime = '2013-1-23 07:00:00';
 	$stmt->execute();
 
 	$event_name = 'Algorithm Practice 3B';
 	$event_desc = 'Second set of competition practice sessions for HackerRank.';
-	$event_day = 4;
+	$event_datetime = '2013-1-25 07:00:00';
 	$stmt->execute();
 }
 

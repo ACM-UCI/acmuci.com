@@ -32,20 +32,20 @@ if ($is_admin && (isset($_POST['create']) || isset($_POST['update']))) {
 	else
 		$errors .= '<p>Please enter an event description.</p>';
 
-	if (!empty($_POST['week']))
-		$week = filter_var($_POST['week'], FILTER_SANITIZE_NUMBER_INT);
-	else
-		$errors .= '<p>Please select a week.</p>';
-
-	if (!empty($_POST['day']))
-		$day = filter_var($_POST['day'], FILTER_SANITIZE_NUMBER_INT);
-	else
-		$errors .= '<p>Please select a day of the week.</p>';
-
 	if (!empty($_POST['bldg']))
 		$bldg = filter_var($_POST['bldg'], FILTER_SANITIZE_NUMBER_INT);
 	else
 		$errors .= '<p>Please select a building.</p>';
+
+	if (!empty($_POST['date']))
+		$date = filter_var($_POST['date'], FILTER_SANITIZE_STRING);
+	else
+		$errors .= '<p>Please select a date.</p>';
+
+	if (!empty($_POST['time']))
+		$time = filter_var($_POST['time'], FILTER_SANITIZE_STRING);
+	else
+		$errors .= '<p>Please select a time.</p>';
 
 	if (!empty($_POST['room']))
 		$room = filter_var($_POST['room'], FILTER_SANITIZE_NUMBER_INT);
@@ -54,12 +54,13 @@ if ($is_admin && (isset($_POST['create']) || isset($_POST['update']))) {
 
 	if (!$errors) {
 		try {
+			$datetime = $date . ' ' . $time;
+
 			if (isset($_POST['update']) && !empty($event_id)) {
 				$query = 'UPDATE events SET 
 					event_name = :event_name, 
 					event_desc = :event_desc, 
-					event_week = :event_week,
-					event_day = :event_day, 
+					event_datetime = :event_datetime,
 					event_room_id = :event_room, 
 					event_bldg_id = :event_bldg
 					WHERE event_id = :event_id';
@@ -67,21 +68,18 @@ if ($is_admin && (isset($_POST['create']) || isset($_POST['update']))) {
 				$stmt->bindParam(':event_id', $event_id);
 				$stmt->bindParam(':event_name', $name);
 				$stmt->bindParam(':event_desc', $desc);
-				$stmt->bindParam(':event_week', $week);
-				$stmt->bindParam(':event_day', $day);
+				$stmt->bindParam(':event_datetime', $datetime);
 				$stmt->bindParam(':event_room', $room);
 				$stmt->bindParam(':event_bldg', $bldg);
 				$stmt->execute();
 			} else {
-				$query = 'INSERT INTO events (event_name, event_desc, event_week,
-					event_day, event_room_id, event_bldg_id) VALUES (:event_name, 
-					:event_desc, :event_week, :event_day, :event_room, 
-					:event_bldg)';
+				$query = 'INSERT INTO events (event_name, event_desc, event_datetime, 
+					event_room_id, event_bldg_id) VALUES (:event_name, 
+					:event_desc, :event_datetime, :event_room, :event_bldg)';
 				$stmt = $db->prepare($query);
 				$stmt->bindParam(':event_name', $name);
 				$stmt->bindParam(':event_desc', $desc);
-				$stmt->bindParam(':event_week', $week);
-				$stmt->bindParam(':event_day', $day);
+				$stmt->bindParam(':event_datetime', $datetime);
 				$stmt->bindParam(':event_room', $room);
 				$stmt->bindParam(':event_bldg', $bldg);
 				$stmt->execute();
@@ -96,7 +94,7 @@ if ($is_admin && (isset($_POST['create']) || isset($_POST['update']))) {
 
 if ($is_admin && !empty($event_id)) {
 	$query = 'SELECT event_name, event_desc, 
-		event_week, event_day,
+		event_datetime,
 		event_room_id, event_bldg_id
 		FROM events
 		WHERE event_id = :event_id';
@@ -104,6 +102,9 @@ if ($is_admin && !empty($event_id)) {
 	$stmt->bindParam(':event_id', $_GET['id'], PDO::PARAM_INT);
 	$stmt->execute();
 	$event = $stmt->fetch(PDO::FETCH_ASSOC);
+	$event_datetime = new DateTime($event['event_datetime']);
+	$event['event_date'] = $event_datetime->format(EVENT_ISO_DATE_FMT);
+	$event['event_time'] = $event_datetime->format(EVENT_ISO_TIME_FMT);
 }
 
 // Default values for form
@@ -118,26 +119,26 @@ if (!empty($errors) && isset($_POST['description']))
 else if (!empty($event))
 	$desc_val = $event['event_desc'];
 
-if (!empty($errors) && isset($_POST['week']))
-	$week_val = $week;
-else if (!empty($event))
-	$week_val = $event['event_week'];
-else
-	$week_val = 1;
-
-if (!empty($errors) && isset($_POST['day']))
-	$day_val = $day;
-else if (!empty($event))
-	$day_val = $event['event_day'];
-else
-	$day_val = 1;
-
 if (!empty($errors) && isset($_POST['location']))
 	$loc_val = $location;
 else if (!empty($event))
 	$loc_val = $event['event_bldg_id'];
 else
 	$loc_val = 1;
+
+if (!empty($errors) && isset($_POST['date']))
+	$date_val = $date;
+else if (!empty($event))
+	$date_val = $event['event_date'];
+else
+	$date_val = $now->format(EEVENT_ISO_DATE_FMT);
+
+if (!empty($errors) && isset($_POST['time']))
+	$time_val = $time;
+else if (!empty($event))
+	$time_val = $event['event_time'];
+else
+	$time_val = $now->format(EVENT_ISO_TIME_FMT);
 
 if (!empty($errors) && isset($_POST['room']))
 	$room_val = $room_id;
@@ -185,20 +186,13 @@ require APP_ROOT . 'adm/adm_header.php';
 
 					<fieldset>
 					<p>
-						<label for="week">Week:</label><br />
-						<input name="week" type="number" min="0" max="10" 
-						value="<?= $week_val ?>" required />
+						<label for="date">Date:</label><br />
+						<input name="date" type="date" value="<?= $date_val ?>" required />
 					</p>
 
 					<p>
-						<label for="day">Day:</label><br />
-						<select name="day">
-						<?php foreach(range(0, 6) as $enum_val): ?>
-							<option value="<?= $enum_val ?>" 
-								<?= ($day_val == $enum_val) ?
-									'selected="true"' : '' ?>><?= getDay($enum_val) ?></option>
-						<?php endforeach; ?>
-						</select>
+						<label for="time">Time:</label><br />
+						<input name="time" type="time" value="<?= $time_val ?>" required />
 					</p>
 					</fieldset>
 					

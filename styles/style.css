@@ -211,6 +211,16 @@ center; }
 	margin: 24px 0;
 }
 
+/* =BUTTON SET */
+
+.button-set {
+	float: right;
+	padding: 8px 10px;
+	background: #CCC;
+	border-radius: 5px;
+	box-shadow: -1px -1px 1px #BABABA;
+}
+
 /* =GRID */
 
 .spanner {

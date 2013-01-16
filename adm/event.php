@@ -7,7 +7,6 @@ include APP_ROOT . '/mod/events/functions.php';
 $is_admin = false;
 
 $query = 'SELECT * FROM locations';
-
 $locations = $db->query($query);
 
 if ($user) {
@@ -27,6 +26,14 @@ if ($is_admin) {
 		die();
 	}
 
+	if (isset($_GET['id']) && isset($_POST['expire'])) {
+		$query = 'UPDATE events SET event_expired = 1
+			WHERE event_id = :event_id';
+		$stmt = $db->prepare($query);
+		$stmt->bindParam(':event_id', $_GET['id']);
+		$stmt->execute();
+	}
+
 	if (isset($_GET['id']) && isset($_POST['edit'])) {
 		$event_id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 		header('Location: create_event.php?id=' . $event_id);
@@ -34,7 +41,8 @@ if ($is_admin) {
 	}
 
 	if (isset($_GET['id'])) {
-		$query = 'SELECT event_id, event_name, event_desc, event_week, event_day
+		$query = 'SELECT event_id, event_name, event_desc, event_expired,
+			event_datetime
 			FROM events
 			WHERE event_id = :event_id';
 		$stmt = $db->prepare($query);
@@ -42,7 +50,6 @@ if ($is_admin) {
 		$stmt->execute();
 		$event = $stmt->fetch(PDO::FETCH_ASSOC);
 	}
-
 }
 
 require APP_ROOT . 'adm/adm_header.php';
@@ -60,16 +67,18 @@ require APP_ROOT . 'adm/adm_header.php';
 				<p>Invalid event ID.</p>
 			<?php else: ?>
 				<div class="three">
-					<footer><?= sprintf(EVENT_DATE_FMT, $event['event_week'], 
-							getDay($event['event_day'])) ?></footer>
+					<footer>
+						<?= printDateTime($event['event_datetime'] ?>
+					</footer>
 					<h2><?= $event['event_name'] ?></h2>
 					<p><?= $event['event_desc'] ?></p>
 				</div>
 
 				<form class="left" action="event.php?id=<?= $_GET['id'] ?>" method="POST">
 					<p>
-						<input type="submit" name="delete" value="Delete" />
+						<input type="submit" name="expire" value="Expire" />
 						<input type="submit" name="edit" value="Edit" />
+						<input type="submit" name="delete" value="Delete" />
 					</p>
 				</form>
 			<?php endif;?>

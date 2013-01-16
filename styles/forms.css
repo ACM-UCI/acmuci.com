@@ -19,7 +19,7 @@ form input[type="text"], form input[type="email"], textarea {
 	border-radius: 5px;
 }
 
-form input[type="number"] {
+form input[type="number"], form input[type="date"], form input[type="time"] {
 	width: 240px;
 	font: 14px Helvetica, Arial, sans-serif;
 	padding: 6px 8px;
@@ -33,7 +33,7 @@ textarea:focus {
 	border-color: #0182AC;
 }
 
-form input[type="number"]:focus {
+form input[type="number"]:focus, form input[type="date"]:focus, form input[type="time"]:focus {
 	outline: 0;
 	border-color: #0182AC;
 }
@@ -44,7 +44,7 @@ textarea:hover {
 	border-color: #0182AC;
 }
 
-form input[type="number"]:hover {
+form input[type="number"]:hover, form input[type="date"]:hover, form input[type="time"]:hover {
 	outline: 0;
 	border-color: #0182AC;
 }

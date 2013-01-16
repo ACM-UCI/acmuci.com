@@ -31,10 +31,10 @@ CREATE TABLE IF NOT EXISTS events (
 	event_id INTEGER NOT NULL,
 	event_name VARCHAR(100) NOT NULL,
 	event_desc TEXT NOT NULL,
+	event_expired INTEGER NOT NULL DEFAULT 0,
 
 	-- Event schedule
-	event_week INTEGER NOT NULL,
-	event_day INTEGER NOT NULL,
+	event_datetime TEXT NOT NULL,
 
 	event_room_id INTEGER NOT NULL,
 	event_bldg_id INTEGER NOT NULL,

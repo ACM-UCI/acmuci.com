@@ -118,7 +118,29 @@ a.simple_button {
 	border-radius: 4px;
 }
 
-a.simple_button:hover {
+a.small_button {
+	display: inline-block;
+	padding: 4px 6px;
+	color: #606060;
+	font-size: 12px;
+	text-shadow: 1px 1px 1px #FFF;
+	background:-webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.8, #F0F0F0),
+		color-stop(0.15, #D6D6D6)
+	); 
+	background: -moz-linear-gradient(
+		to bottom,
+		rgb(255,217,0) 15%,
+		rgb(252,147,0)
+	); 
+	border: 2px solid #606060;
+	border-radius: 4px;
+}
+
+a.simple_button:hover, a.small_button:hover {
 	color: rgb(1, 130, 172);
 	border-color: rgb(1, 130, 172);
 }
@@ -128,4 +150,10 @@ blockquote {
 	padding: 24px 40px;
 	background: #E0E0E0;
 	border-radius: 5px;
+}
+
+.expired {
+	color: #FF0000;
+	font-size: 13px;
+	text-transform: uppercase;
 }
