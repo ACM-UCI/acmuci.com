@@ -1,5 +1,5 @@
 <?php
 
-header('Location: projects.php');
+header('Location: events.php');
 
 ?>

@@ -5,14 +5,12 @@ require 'Validatable.php';
 class Location extends Validatable {
 	const TABLE_NAME = 'locations';
 
-	public $room_id;
-	public $bldg_id;
-	public $location_full_name;
-	public $location_short_name;
+	private $bldg_id;
+	private $location_full_name;
+	private $location_short_name;
 
-	public function __construct($room_id, $bldg_id, $location_full_name,
+	public function __construct($bldg_id, $location_full_name,
 	$location_short_name) {
-		$this->room_id = $room_id;
 		$this->bldg_id = $bldg_id;
 		$this->location_full_name = $location_full_name;
 		$this->location_short_name = $location_short_name;
@@ -20,8 +18,6 @@ class Location extends Validatable {
 
 	public function validate() {
 		$this->errors = array();
-		if (!filter_var($this->room_id, FILTER_VALIDATE_INT))
-			$this->addError('Room is invalid');
 		if (!filter_var($this->bldg_id, FILTER_VALIDATE_INT))
 			$this->addError('Building ID is invalid');
 		if (empty($this->location_full_name))
@@ -39,7 +35,6 @@ class Location extends Validatable {
 	}
 
 	public function sanitize() {
-		$this->room_id = filter_var($this->room_id, FILTER_SANITIZE_INT);
 		$this->bldg_id = filter_var($this->bldg_id, FILTER_SANITIZE_INT);
 		$this->location_full_name = filter_var($this->location_full_name,
 		FILTER_SANITIZE_STRING);
@@ -51,26 +46,31 @@ class Location extends Validatable {
 		$this->sanitize();
 		if (!$this->validate())
 			return false;
-		$query = 'INSERT INTO ' . self::TABLE_NAME . ' (room_id, bldg_id,
-		location_full_name, location_short_name) VALUES (:room_id, :bldg_id,
+		$query = 'INSERT INTO ' . self::TABLE_NAME . ' (bldg_id,
+		location_full_name, location_short_name) VALUES (:bldg_id,
 		:location_full_name, :location_short_name)';
 		$stmt = $GLOBALS['db']->prepare($query);
-		$stmt->bindParam(':room_id', $this->room_id, PDO::PARAM_INT);
 		$stmt->bindParam(':bldg_id', $this->bldg_id, PDO::PARAM_INT);
 		$stmt->bindParam(':location_full_name', $this->location_full_name);
 		$stmt->bindParam(':location_short_name', $this->location_short_name);
 		return $stmt->execute();
 	}
 
-	public static function read($room_id, $bldg_id) {
-		$query = 'SELECT * FROM ' . self::TABLE_NAME . ' WHERE room_id =
-		:room_id AND bldg_id = :bldg_id';
+	public static function get($bldg_id) {
+		$query = 'SELECT * FROM ' . self::TABLE_NAME . ' WHERE bldg_id = :bldg_id';
 		$stmt = $GLOBALS['db']->prepare($query);
-		$stmt->bindParam(':room_id', $room_id, PDO::PARAM_INT);
 		$stmt->bindParam(':bldg_id', $bldg_id, PDO::PARAM_INT);
+		$stmt->setFetchMode(PDO::FETCH_OBJ);
 		$stmt->execute();
-		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Location');
-		return ($stmt->rowCount === 1) ? $stmt->fetch() : null;
+		return ($stmt->fetchColumn() === 1) ? $stmt->fetch() : null;
+	}
+
+	public static function getAll() {
+		$query = 'SELECT * FROM ' . self::TABLE_NAME;
+		$stmt = $GLOBALS['db']->query($query);
+		$stmt->setFetchMode(PDO::FETCH_OBJ);
+		$stmt->execute();
+		return ($stmt->fetchColumn() > 1) ? $stmt->fetchAll() : null;
 	}
 }
 

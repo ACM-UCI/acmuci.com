@@ -11,7 +11,7 @@ $query = 'SELECT e.event_name, e.event_desc,
 	LEFT JOIN locations AS l
 		ON e.event_bldg_id = l.bldg_id
 	WHERE event_expired = 0
-	ORDER BY event_datetime ASC
+	ORDER BY julianday(event_datetime) ASC
 	LIMIT 4';
 $events = $db->query($query);
 

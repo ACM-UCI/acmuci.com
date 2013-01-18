@@ -1,24 +1,16 @@
 <?php
 
 define('IN_SITE', true);
-require_once '../common.php';
+require_once 'adm_common.php';
 include_once APP_ROOT . '/mod/events/functions.php';
+include_once APP_ROOT . '/models/Location.php';
 
-$is_admin = false;
-
-$query = 'SELECT * FROM locations';
-$locations = $db->query($query);
-
-if ($user) {
-	$logged_in = true;
-	if ($user_info['member_role'] == 1)
-		$is_admin = true;
-}
+$locations = Location::getAll();
 
 if (isset($_GET['id']))
 	$event_id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 
-if ($is_admin && (isset($_POST['create']) || isset($_POST['update']))) {
+if (isset($_POST['create']) || isset($_POST['update'])) {
 	if (!empty($_POST['event_id']))
 		$event_id = filter_var($_POST['event_id'], FILTER_SANITIZE_NUMBER_INT);
 
@@ -92,7 +84,7 @@ if ($is_admin && (isset($_POST['create']) || isset($_POST['update']))) {
 	}
 }
 
-if ($is_admin && !empty($event_id)) {
+if (!empty($event_id)) {
 	$query = 'SELECT event_name, event_desc, 
 		event_datetime,
 		event_room_id, event_bldg_id
@@ -152,81 +144,75 @@ require APP_ROOT . 'adm/adm_header.php';
 <section id="content">
 	<div class="inner">
 		<div class="content-block">
-			<?php if (!$logged_in): ?>
-				<a href="<?= $login_url ?>">Login</a>
-			<?php elseif (!$is_admin): ?>
-				<p>You are not an administrator.</p>
-			<?php else: ?>
-				<form action="create_event.php<?= !empty($event_id) ? '?id=' . $event_id : '' ?>" method="POST">
-					<?php 
-						echo (isset($errors)) ? '<div class="errors">' .
-						$errors .  '</div>' : '';
-					?>
+			<form action="create_event.php<?= !empty($event_id) ? '?id=' . $event_id : '' ?>" method="POST">
+				<?php 
+					echo (isset($errors)) ? '<div class="errors">' .
+					$errors .  '</div>' : '';
+				?>
 
-					<?php if ($success): ?>
-					<div class="success">
-						<?php if (isset($_POST['update'])): ?>
-							<p>Successfully updated event!</p>
-						<?php else: ?>
-							<p>Successfully created event!</p>
-						<?php endif; ?>
-					</div>
+				<?php if ($success): ?>
+				<div class="success">
+					<?php if (isset($_POST['update'])): ?>
+						<p>Successfully updated event!</p>
+					<?php else: ?>
+						<p>Successfully created event!</p>
 					<?php endif; ?>
+				</div>
+				<?php endif; ?>
 
-					<p>
-						<label for="name">Event Name:</label><br />
-						<input type="text" name="name" value="<?= $name_val ?>" 
-						required />
-					</p>
+				<p>
+					<label for="name">Event Name:</label><br />
+					<input type="text" name="name" value="<?= $name_val ?>" 
+					required />
+				</p>
 
-					<p>
-						<label for="description">Description:</label><br />
-						<textarea name="description" style="height: 80px" required><?= $desc_val ?></textarea>
-					</p>
+				<p>
+					<label for="description">Description:</label><br />
+					<textarea name="description" style="height: 80px" required><?= $desc_val ?></textarea>
+				</p>
 
-					<fieldset>
-					<p>
-						<label for="date">Date:</label><br />
-						<input name="date" type="date" value="<?= $date_val ?>" required />
-					</p>
+				<fieldset>
+				<p>
+					<label for="date">Date:</label><br />
+					<input name="date" type="date" value="<?= $date_val ?>" required />
+				</p>
 
-					<p>
-						<label for="time">Time:</label><br />
-						<input name="time" type="time" value="<?= $time_val ?>" required />
-					</p>
-					</fieldset>
-					
-					<fieldset>
-					<p>
-						<label for="bldg">Building:</label><br />
-						<select name="bldg">
-						<?php foreach($locations as $location): ?>
-							<option value="<?= $location['bldg_id'] ?>"
-								<?= ($loc_val == $location['bldg_id']) ?
-									'selected="true"' : '' ?>>
-								<?= $location['location_full_name'] ?>
-							</option>
-						<?php endforeach; ?>
-						</select>
-					</p>
-					<p>
-						<label for="room">Room Number:</label><br />
-						<input name="room" type="number" 
-						value="<?= $room_val ?>" required />
-					</p>
-					<p>
-					</fieldset>
+				<p>
+					<label for="time">Time:</label><br />
+					<input name="time" type="time" value="<?= $time_val ?>" required />
+				</p>
+				</fieldset>
+				
+				<fieldset>
+				<p>
+					<label for="bldg">Building:</label><br />
+					<select name="bldg">
+					<?php foreach($locations as $location): ?>
+						<option value="<?= $location->bldg_id ?>"
+							<?= ($loc_val == $location->bldg_id) ?
+								'selected="true"' : '' ?>>
+							<?= $location->location_full_name ?>
+						</option>
+					<?php endforeach; ?>
+					</select>
+				</p>
+				<p>
+					<label for="room">Room Number:</label><br />
+					<input name="room" type="number" 
+					value="<?= $room_val ?>" required />
+				</p>
+				<p>
+				</fieldset>
 
-					<p>
-						<?php if (!empty($event_id)): ?>
-						<input type="hidden" name="event_id" value="<?= $event_id ?>" />
-						<input type="submit" name="update" value="Update Event" />
-						<?php else: ?>
-						<input type="submit" name="create" value="Create Event" />
-						<?php endif; ?>
-					</p>
-				</form>
-			<?php endif;?>
+				<p>
+					<?php if (!empty($event_id)): ?>
+					<input type="hidden" name="event_id" value="<?= $event_id ?>" />
+					<input type="submit" name="update" value="Update Event" />
+					<?php else: ?>
+					<input type="submit" name="create" value="Create Event" />
+					<?php endif; ?>
+				</p>
+			</form>
 		</div>
 	</div>
 </section>

@@ -1,67 +1,54 @@
 <?php
 
 define('IN_SITE', true);
-require_once '../common.php';
+require_once 'adm_common.php';
 include APP_ROOT . '/mod/events/functions.php';
 
-$is_admin = false;
-
-$query = 'SELECT * FROM locations';
-$locations = $db->query($query);
-
-if ($user) {
-	$logged_in = true;
-	if ($user_info['member_role'] == 1)
-		$is_admin = true;
+if (isset($_GET['id'])) {
+	$query = 'SELECT event_id, event_name, event_desc, event_expired,
+		event_datetime
+		FROM events
+		WHERE event_id = :event_id';
+	$stmt = $db->prepare($query);
+	$stmt->bindParam(':event_id', $_GET['id'], PDO::PARAM_INT);
+	$stmt->execute();
+	$event = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-if ($is_admin) {
-	if (isset($_GET['id'])) {
-		$query = 'SELECT event_id, event_name, event_desc, event_expired,
-			event_datetime
-			FROM events
-			WHERE event_id = :event_id';
-		$stmt = $db->prepare($query);
-		$stmt->bindParam(':event_id', $_GET['id'], PDO::PARAM_INT);
-		$stmt->execute();
-		$event = $stmt->fetch(PDO::FETCH_ASSOC);
-	}
+if (isset($_GET['id']) && isset($_POST['delete'])) {
+	$query = 'DELETE FROM events WHERE event_id = :event_id';
+	$stmt = $db->prepare($query);
+	$stmt->bindParam(':event_id', $_GET['id']);
+	$stmt->execute();
+	
+	header('Location: events.php');
+	die();
+}
 
-	if (isset($_GET['id']) && isset($_POST['delete'])) {
-		$query = 'DELETE FROM events WHERE event_id = :event_id';
-		$stmt = $db->prepare($query);
-		$stmt->bindParam(':event_id', $_GET['id']);
-		$stmt->execute();
-		
-		header('Location: events.php');
-		die();
-	}
+if (isset($_GET['id']) && isset($_POST['expire'])) {
+	$query = 'UPDATE events SET event_expired = 1
+		WHERE event_id = :event_id';
+	$stmt = $db->prepare($query);
+	$stmt->bindParam(':event_id', $_GET['id']);
+	$stmt->execute();
+}
 
-	if (isset($_GET['id']) && isset($_POST['expire'])) {
-		$query = 'UPDATE events SET event_expired = 1
-			WHERE event_id = :event_id';
-		$stmt = $db->prepare($query);
-		$stmt->bindParam(':event_id', $_GET['id']);
-		$stmt->execute();
-	}
+if (isset($_GET['id']) && isset($_POST['facebook'])) {
+	$start_time = new DateTime($event['datetime'], new DateTimeZone('UTC'));
+	$result = $fb->api('/' . FB_GROUP_ID . '/events', 'POST',
+		array(
+			'access_token' => $fb->getAccessToken(),
+			'name' => $event['event_name'],
+			'start_time' => $start_time->format(DateTime::ISO8601),
+			'description' => $event['event_desc'])
+		);
+	var_dump($result);
+}
 
-	if (isset($_GET['id']) && isset($_POST['facebook'])) {
-		$start_time = new DateTime($event['datetime'], new DateTimeZone('UTC'));
-		$result = $fb->api('/' . FB_GROUP_ID . '/events', 'POST',
-			array(
-				'access_token' => $fb->getAccessToken(),
-				'name' => $event['event_name'],
-				'start_time' => $start_time->format(DateTime::ISO8601),
-				'description' => $event['event_desc'])
-			);
-		var_dump($result);
-	}
-
-	if (isset($_GET['id']) && isset($_POST['edit'])) {
-		$event_id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-		header('Location: create_event.php?id=' . $event_id);
-		die();
-	}
+if (isset($_GET['id']) && isset($_POST['edit'])) {
+	$event_id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+	header('Location: create_event.php?id=' . $event_id);
+	die();
 }
 
 require APP_ROOT . 'adm/adm_header.php';
@@ -71,11 +58,7 @@ require APP_ROOT . 'adm/adm_header.php';
 <section id="content">
 	<div class="inner">
 		<div class="content-block">
-			<?php if (!$logged_in): ?>
-				<a href="<?= $login_url ?>">Login</a>
-			<?php elseif (!$is_admin): ?>
-				<p>You are not an administrator.</p>
-			<?php elseif (!isset($_GET['id']) || empty($event)): ?>
+			<?php if (!isset($_GET['id']) || empty($event)): ?>
 				<p>Invalid event ID.</p>
 			<?php else: ?>
 				<div class="three">

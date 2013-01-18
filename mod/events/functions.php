@@ -9,6 +9,13 @@ function printDateTime($event_datetime) {
 	echo $datetime->format(EVENT_DATETIME_FMT);
 }
 
+function expirePastEvents(&$db) {
+	$query = 'UPDATE events
+		SET event_expired = 1
+		WHERE julianday(event_datetime) < julianday(\'now\')';
+	$db->exec($query);
+}
+
 $now = new DateTime('now');
 
 ?>
