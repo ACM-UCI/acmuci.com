@@ -39,6 +39,7 @@ user-scalable=no" />
 				<a href="../index.php" title="Home">Back to Site</a> 
 				<a href="events.php" title="Events">Events</a>
 				<a href="projects.php" title="Projects">Projects</a> 
+				<a href="locations.php" title="Locations">Locations</a> 
 			</nav>
 		</div>
 	</div>
