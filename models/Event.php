@@ -89,7 +89,11 @@ class Event extends Validatable {
 			event_datetime = :event_datetime,
 			event_room_id = :event_room,
 			event_bldg_id = :event_bldg,
-			event_expired = :event_expired
+			event_expired = coalesce(
+				(SELECT event_expired 
+				FROM events
+				WHERE event_id = :event_id), 
+				:event_expired)
 			WHERE event_id = :event_id';
 		$stmt = $GLOBALS['db']->prepare($query);
 		$stmt->bindParam(':event_id', $this->event_id);

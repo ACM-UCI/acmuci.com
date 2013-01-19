@@ -35,7 +35,7 @@ class Location extends Validatable {
 	}
 
 	public function sanitize() {
-		$this->bldg_id = filter_var($this->bldg_id, FILTER_SANITIZE_INT);
+		$this->bldg_id = filter_var($this->bldg_id, FILTER_SANITIZE_NUMBER_INT);
 		$this->location_full_name = filter_var($this->location_full_name,
 		FILTER_SANITIZE_STRING);
 		$this->location_short_name = filter_var($this->location_short_name,
@@ -56,13 +56,27 @@ class Location extends Validatable {
 		return $stmt->execute();
 	}
 
+	public function update() {
+		$this->sanitize();
+		if (!$this->validate())
+			return false;
+		$query = 'INSERT OR REPLACE INTO ' . self::TABLE_NAME . ' (bldg_id,
+		location_full_name, location_short_name) VALUES (:bldg_id,
+		:location_full_name, :location_short_name)';
+		$stmt = $GLOBALS['db']->prepare($query);
+		$stmt->bindParam(':bldg_id', $this->bldg_id, PDO::PARAM_INT);
+		$stmt->bindParam(':location_full_name', $this->location_full_name);
+		$stmt->bindParam(':location_short_name', $this->location_short_name);
+		return $stmt->execute();
+	}
+
 	public static function get($bldg_id) {
 		$query = 'SELECT * FROM ' . self::TABLE_NAME . ' WHERE bldg_id = :bldg_id';
 		$stmt = $GLOBALS['db']->prepare($query);
 		$stmt->bindParam(':bldg_id', $bldg_id, PDO::PARAM_INT);
 		$stmt->setFetchMode(PDO::FETCH_OBJ);
 		$stmt->execute();
-		return ($stmt->fetchColumn() === 1) ? $stmt->fetch() : null;
+		return $stmt->fetch();
 	}
 
 	public static function getAll() {
@@ -70,7 +84,7 @@ class Location extends Validatable {
 		$stmt = $GLOBALS['db']->query($query);
 		$stmt->setFetchMode(PDO::FETCH_OBJ);
 		$stmt->execute();
-		return ($stmt->fetchColumn() > 1) ? $stmt->fetchAll() : null;
+		return $stmt->fetchAll();
 	}
 }
 
