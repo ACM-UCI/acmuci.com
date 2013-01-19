@@ -1,6 +1,6 @@
 <?php
 
-require 'Validatable.php';
+require_once 'Validatable.php';
 
 class Location extends Validatable {
 	const TABLE_NAME = 'locations';

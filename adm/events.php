@@ -2,8 +2,8 @@
 
 define('IN_SITE', true);
 require_once 'adm_common.php';
-include APP_ROOT . '/mod/events/functions.php';
-include APP_ROOT . '/mod/Location.php';
+include APP_ROOT . 'mod/events/functions.php';
+include APP_ROOT . 'mod/Location.php';
 
 $query = 'SELECT event_id, event_name, event_expired,
 	event_datetime

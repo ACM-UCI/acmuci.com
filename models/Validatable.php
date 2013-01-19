@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../common.php';
 
 abstract class Validatable {
-	private $errors;
+	protected $errors;
 
 	public abstract function validate();
 
