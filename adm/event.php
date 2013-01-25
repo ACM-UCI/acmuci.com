@@ -39,7 +39,7 @@ if (isset($_GET['id']) && isset($_POST['facebook'])) {
 		array(
 			'access_token' => $fb->getAccessToken(),
 			'name' => $event['event_name'],
-			'start_time' => $start_time->format(DateTime::ISO8601),
+			'start_time' => strftime('%s', $start_time->format(DateTime::ISO8601)),
 			'description' => $event['event_desc'])
 		);
 	var_dump($result);
