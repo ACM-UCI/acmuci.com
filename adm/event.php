@@ -44,8 +44,9 @@ if (isset($_GET['id']) && isset($_POST['facebook'])) {
 			'privacy' => 'SECRET'
 		)
 	);
-	if (isset($result['id']))
+	if (isset($result['id'])) {
 		// Success 
+	}
 }
 
 if (isset($_GET['id']) && isset($_POST['edit'])) {
