@@ -40,8 +40,7 @@ if (isset($_GET['id']) && isset($_POST['facebook'])) {
 			'access_token' => $fb->getAccessToken(),
 			'name' => $event['event_name'],
 			'start_time' => $start_time->format(DateTime::ISO8601),
-			'description' => $event['event_desc'],
-			'privacy' => 'SECRET'
+			'description' => $event['event_desc']
 		)
 	);
 	if (isset($result['id'])) {
