@@ -34,16 +34,18 @@ if (isset($_GET['id']) && isset($_POST['expire'])) {
 }
 
 if (isset($_GET['id']) && isset($_POST['facebook'])) {
-	$start_time = new DateTime($event['datetime'], new DateTimeZone('UTC'));
+	$start_time = new DateTime($event['event_datetime'], new DateTimeZone('America/Los_Angeles'));
 	$result = $fb->api('/' . FB_GROUP_ID . '/events', 'POST',
 		array(
 			'access_token' => $fb->getAccessToken(),
 			'name' => $event['event_name'],
-			'start_time' => strftime('%s', $start_time->format(DateTime::ISO8601)),
+			'start_time' => $start_time->format(DateTime::ISO8601),
 			'description' => $event['event_desc'],
+			'privacy' => 'SECRET'
 		)
 	);
-	var_dump($result);
+	if (isset($result['id']))
+		// Success 
 }
 
 if (isset($_GET['id']) && isset($_POST['edit'])) {
