@@ -8,7 +8,8 @@ include APP_ROOT . 'mod/Location.php';
 $query = 'SELECT event_id, event_name, event_expired,
 	event_datetime
 	FROM events
-	ORDER BY julianday(event_datetime) ASC';
+	ORDER BY julianday(event_datetime) DESC
+	LIMIT 10';
 $events = $db->query($query);
 
 require APP_ROOT . 'adm/adm_header.php';
