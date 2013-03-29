@@ -71,46 +71,73 @@ require 'header.php';
 
 			<div class="collection">
 				<div class="member">
-					<img src="images/board/muhammad_zaman.jpg" width="115px"
-					height="115px" />
-					<h4>Muhammad Zaman</h4>
+					<img src="images/board/gio_borje.jpg" width="135px"
+					height="135px" />
+					<h4>Gio Borje</h4>
 					<span>Chair</span>
 				</div>
 
 				<div class="member">
-					<img src="images/board/gio_borje.jpg" width="115px"
-					height="115px" />
-					<h4>Gio Borje</h4>
-					<span>VP & Projects
-					Manager</span>
+					<img src="images/board/kenny_baldauf.jpg" width="135px"
+					height="135px" />
+					<h4>Kenneth Baldauf</h4>
+					<span>Vice Chair</span>
 				</div>
 
 				<div class="member">
-					<img src="images/board/kenny_baldauf.jpg" width="115px"
-					height="115px" />
-					<h4>Kenny Baldauf</h4>
-					<span>Competition Coordinator</span>
+					<img src="images/board/muhammad_zaman.jpg" width="135px"
+					height="135px" />
+					<h4>Muhammad Zaman</h4>
+					<span>Historian</span>
 				</div>
 				
 				<div class="member">
-					<img src="images/board/raymond_thai.jpg" width="115px"
-					height="115px" />
+					<img src="images/board/raymond_thai.jpg" width="135px"
+					height="135px" />
 					<h4>Raymond Thai</h4>
 					<span>Corporate Outreach</span>
 				</div>
 
 				<div class="member">
-					<img src="images/board/brian_wang.jpg" width="115px"
-					height="115px" />
+					<img src="images/board/brian_wang.jpg" width="135px"
+					height="135px" />
 					<h4>Brian Wang</h4>
 					<span>Treasurer</span>
 				</div>
 				
 				<div class="member">
-					<img src="images/board/john_lin.jpg" width="115px"
-					height="115px" />
+					<img src="images/board/john_lin.jpg" width="135px"
+					height="135px" />
 					<h4>John Lin</h4>
 					<span>Resource Acquisition</span>
+				</div>
+
+				<div class="member">
+					<img src="images/board/anthony_hoang.jpg" width="135px"
+					height="135px" />
+					<h4>Anthony Hoang</h4>
+					<span>Microsoft Student Partner</span>
+				</div>
+
+				<div class="member">
+					<img src="images/board/sharat_chandra.jpg" width="135px"
+					height="135px" />
+					<h4>Sharat Chandra</h4>
+					<span>Secretary<span>
+				</div>
+
+				<div class="member">
+					<img src="images/board/nicolau.jpg" width="135px"
+					height="135px" />
+					<h4>Alexander Nicolau</h4>
+					<span>Faculty Advisor<span>
+				</div>
+
+				<div class="member">
+					<img src="images/board/AV.jpg" width="135px"
+					height="135px" />
+					<h4>Alexander Veidenbaum</h4>
+					<span>Faculty Advisor<span>
 				</div>
 			</div>
 
@@ -119,7 +146,8 @@ require 'header.php';
 			href="http://www.cogitolingua.net/blog/" title="Eric Hennigan"
 			target="_blank">Eric Hennigan</a> for moral support, Alex Thornton
 			for organization advice, Dan Hirschberg for algorithm help, and
-			Richard Pattis as our faculty adviser.</p>
+			Alexander Nicolau and Alexander Veidenbaum as our faculty
+			advisors.</p>
 		</div>
 
 		<div id="what_is" class="content-block">

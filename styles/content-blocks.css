@@ -16,7 +16,7 @@ section#secondary-content {
 
 .collection .member {
 	float: left;
-	margin: 0 20px 0 0;
+	margin: 0 20px 20px 0;
 }
 
 .collection .member:last-child { margin-right: 0; }
@@ -27,7 +27,7 @@ section#secondary-content {
 }
 
 .collection .member h4 {
-	font: 14px "Aller";
+	font: 15px "Aller";
 	text-align: center;
 }
 
