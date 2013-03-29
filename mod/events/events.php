@@ -2,7 +2,8 @@
 
 $events = array();
 
-$query = 'SELECT e.event_name, e.event_desc, 
+$query = 'SELECT e.event_facebook_id, 
+	e.event_name, e.event_desc, 
 	e.event_datetime,
 	e.event_room_id,
 	l.location_short_name,
@@ -31,7 +32,15 @@ define('EVENT_DATE_FMT', 'Week %d: %s');
 			@<?= $event['location_short_name'] ?><?= $event['event_room_id'] ?>
 		</a>
 	</footer>
-	<h3><?= $event['event_name'] ?></h3>
+	<h3>
+		<?php if (!empty($event['event_facebook_id'])): ?>
+		<a href="http://www.facebook.com/events/<?= $event['event_facebook_id'] ?>/">
+			<?= $event['event_name'] ?>
+		</a>
+		<?php else: ?>
+			<?= $event['event_name'] ?>
+		<?php endif; ?>
+	</h3>
 	<p><?= $event['event_desc'] ?></p>
 </article>
 <?php endforeach; ?>

@@ -6,6 +6,7 @@ class Event extends Validatable {
 	const TABLE_NAME = 'events';
 
 	private $event_id;
+	private $event_facebook_id;
 	private $event_name;
 	private $event_datetime;
 	private $event_desc;
@@ -15,7 +16,7 @@ class Event extends Validatable {
 
 	public function __construct($event_name, $event_desc,
 	$event_datetime, $event_room_id, $event_bldg_id, $event_expired = 0, 
-	$event_id = 0) {
+	$event_id = 0, $event_facebook_id = null) {
 		$this->event_name = $event_name;
 		$this->event_desc = $event_desc;
 		$this->event_datetime = $event_datetime;
@@ -24,11 +25,17 @@ class Event extends Validatable {
 		$this->event_expired = $event_expired;
 		if ($event_id > 0)
 			$this->event_id = $event_id;
+		$this->event_facebook_id = $event_facebook_id;
 	}
 
 	public function set_event_id($event_id) {
 		assert('!empty($event_id)');
 		$this->event_id = $event_id;
+	}
+
+	public function set_event_facebook_id($event_facebook_id) {
+		assert('!empty($event_facebook_id)');
+		$this->event_facebook_id = $event_facebook_id;
 	}
 
 	public function validate() {
@@ -84,6 +91,7 @@ class Event extends Validatable {
 		if (!$this->validate())
 			return false;
 		$query = 'UPDATE ' . self::TABLE_NAME . ' SET
+			event_facebook_id = :event_facebook_id,
 			event_name = :event_name,
 			event_desc = :event_desc,
 			event_datetime = :event_datetime,
@@ -97,6 +105,7 @@ class Event extends Validatable {
 			WHERE event_id = :event_id';
 		$stmt = $GLOBALS['db']->prepare($query);
 		$stmt->bindParam(':event_id', $this->event_id);
+		$stmt->bindParam(':event_facebook_id', $this->event_facebook_id);
 		$stmt->bindParam(':event_name', $this->event_name);
 		$stmt->bindParam(':event_desc', $this->event_desc);
 		$stmt->bindParam(':event_datetime', $this->event_datetime);
@@ -108,7 +117,7 @@ class Event extends Validatable {
 
 	public static function get($event_id) {
 		assert('$event_id > 0');
-		$query = 'SELECT event_name, event_desc, event_datetime, 
+		$query = 'SELECT event_facebook_id, event_name, event_desc, event_datetime, 
 			event_room_id, event_bldg_id
 			FROM events
 			WHERE event_id = :event_id';

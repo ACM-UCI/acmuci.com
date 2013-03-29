@@ -35,16 +35,23 @@ if (isset($_GET['id']) && isset($_POST['expire'])) {
 
 if (isset($_GET['id']) && isset($_POST['facebook'])) {
 	$start_time = new DateTime($event['event_datetime'], new DateTimeZone('America/Los_Angeles'));
-	$result = $fb->api('/' . FB_GROUP_ID . '/events', 'POST',
-		array(
+	$event_info = array(
 			'access_token' => $fb->getAccessToken(),
 			'name' => $event['event_name'],
 			'start_time' => $start_time->format(DateTime::ISO8601),
 			'description' => $event['event_desc']
-		)
-	);
-	if (isset($result['id'])) {
-		// Success 
+		);
+	try {
+		$result = $fb->api('/' . FB_GROUP_ID . '/events', 'POST', $event_info);
+		$query = 'UPDATE events 
+			SET event_facebook_id = :facebook_id
+			WHERE event_id = :event_id';
+		$stmt = $db->prepare($query);
+		$stmt->bindParam(':facebook_id', $result['id']);
+		$stmt->bindParam(':event_id', $_GET['id']);
+		$stmt->execute();
+	} catch (FacebookApiException $e) {
+		echo 'Error: ' . $e;
 	}
 }
 
