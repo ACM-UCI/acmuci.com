@@ -70,11 +70,12 @@ class Event extends Validatable {
 		$this->sanitize();
 		if (!$this->validate())
 			return false;
-		$query = 'INSERT INTO ' . self::TABLE_NAME . ' (event_name, event_desc,
-		event_datetime, event_room_id, event_bldg_id, event_expired) VALUES
-		(:event_name, :event_desc, :event_datetime, :event_room_id, :event_bldg_id,
-		:event_expired)';
+		$query = 'INSERT INTO ' . self::TABLE_NAME . ' (event_facebook_id,
+		event_name, event_desc, event_datetime, event_room_id, event_bldg_id,
+		event_expired) VALUES (:event_facebook_id, :event_name, :event_desc,
+		:event_datetime, :event_room_id, :event_bldg_id, :event_expired)';
 		$stmt = $GLOBALS['db']->prepare($query);
+		$stmt->bindParam(':event_facebook_id', $this->event_facebook_id);
 		$stmt->bindParam(':event_name', $this->event_name);
 		$stmt->bindParam(':event_desc', $this->event_desc);
 		$stmt->bindParam(':event_datetime', $this->event_datetime);

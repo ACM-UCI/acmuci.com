@@ -15,6 +15,9 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
 	if (!empty($_POST['event_id']))
 		$event_id = filter_var($_POST['event_id'], FILTER_SANITIZE_NUMBER_INT);
 
+	if (!empty($_POST['facebook_id']))
+		$facebook_id = filter_var($_POST['facebook_id'], FILTER_SANITIZE_NUMBER_INT);
+
 	if (!empty($_POST['date']))
 		$date = filter_var($_POST['date'], FILTER_SANITIZE_STRING);
 	else
@@ -33,8 +36,10 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
 
 		if (isset($_POST['update']) && !empty($event_id)) {
 			$new_event->set_event_id($event_id);
+			$new_event->set_event_facebook_id($facebook_id);
 			$new_event->update();
 		} else {
+			$new_event->set_event_facebook_id($facebook_id);
 			$new_event->create();
 		}
 
@@ -85,6 +90,11 @@ if (!empty($errors) && isset($_POST['room']))
 else if (!empty($event->event_room_id))
 	$room_val = $event->event_room_id;
 
+if (!empty($errors) && isset($_POST['facebook_id']))
+	$facebook_id_val = $facebook_id_val;
+else if (!empty($event->event_facebook_id))
+	$facebook_id_val = $event->event_facebook_id;
+
 require APP_ROOT . 'adm/adm_header.php';
 
 ?>
@@ -112,6 +122,12 @@ require APP_ROOT . 'adm/adm_header.php';
 					<label for="name">Event Name:</label><br />
 					<input type="text" name="name" value="<?= $name_val ?>" 
 					required />
+				</p>
+
+				<p>
+					<label for="facebook_id">Facebook Event ID:</label><br />
+					<input name="facebook_id" type="number" 
+					value="<?= $facebook_id_val ?>" />
 				</p>
 
 				<p>
