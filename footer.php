@@ -12,15 +12,15 @@
 		<div id="locations-collection">
 			<div class="address">
 				<h3>Competitions Practice</h3>
-				Every Mon. and Thurs.<br />
-				Room 15<br />
-				Courtyard Study Lounge (CSL)<br />
+				Every Wed. and Thurs.<br />
+				Room 3011<br />
+				Donald Bren Hall (DBH)<br />
 			</div>
 			<div class="address">
 				<h3>Theory Group Meetings</h3>
-				Biweekly<br />
-				Room 2137<br />
-				Frederick Reines Hall (FRH)<br />
+				Quarterly<br />
+				Room TBA<br />
+				Donald Bren Hall (DBH)<br />
 			</div>
 			<div class="address">
 				<h3>Impromptu Meetings</h3>
