@@ -12,9 +12,9 @@
 		<div id="locations-collection">
 			<div class="address">
 				<h3>Competitions Practice</h3>
-				Every Wed. and Thurs.<br />
-				Room 3011<br />
-				Donald Bren Hall (DBH)<br />
+				Every Wednesday<br />
+				Room 1112<br />
+				Engineering Hall (EH)<br />
 			</div>
 			<div class="address">
 				<h3>Theory Group Meetings</h3>

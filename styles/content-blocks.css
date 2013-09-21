@@ -99,9 +99,13 @@ section#secondary-content {
 	width: 435px;
 }
 
-#competitions .collection .competition .teams ol { list-style: none; }
+#competitions .collection .competition .teams ol { 
+	margin-top: 0;
+	list-style: none;
+}
 
 #competitions .collection .competition .teams ol li {
+	margin-top: 0;
 	padding: 12px 24px;
 	background-color: #EEE;
 }
