@@ -64,6 +64,48 @@ section#secondary-content {
 	width: 275px;
 }
 
+/* =COMPETITIONS
+   ------------ */
+
+#competitions .collection { 
+	overflow: hidden;
+	margin: 24px 0 0;
+}
+
+#competitions .collection .competition {
+	float: left;
+	width: 960px;
+	overflow: hidden;
+	margin: 24px 40px 24px 0;
+}
+
+#competitions .collection .competition:nth-child(2n+2) { 
+	margin-right: 0;
+}
+
+#competitions .collection .competition img { 
+	float: left;
+	margin-right: 32px;
+}
+
+#competitions .collection .competition .description { 
+	float: right;
+	width: 315px;
+	margin-right: 48px;
+}
+
+#competitions .collection .competition .teams { 
+	float: right;
+	width: 435px;
+}
+
+#competitions .collection .competition .teams ol { list-style: none; }
+
+#competitions .collection .competition .teams ol li {
+	padding: 12px 24px;
+	background-color: #EEE;
+}
+
 /* =PROJECTS
    --------- */
 
