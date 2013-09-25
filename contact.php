@@ -78,7 +78,7 @@ if (isset($_POST['send'])) {
 
 			<div class="caption">
 				<p>Need to get in contact with someone in specific? You could
-				searching through our try our <a
+				try searching through our <a
 				href="http://www.facebook.com/groups/228954137162541/">
 				Facebook Group</a>.</p>
 
