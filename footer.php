@@ -12,7 +12,7 @@
 		<div id="locations-collection">
 			<div class="address">
 				<h3>Competitions Practice</h3>
-				Every Wednesday<br />
+				Every Tuesday &amp; Wednesday<br />
 				Room 1112<br />
 				Engineering Hall (EH)<br />
 			</div>
