@@ -18,7 +18,7 @@ require_once 'header.php';
 			involved in competitions.</p>
 			<div class="collection">
 				<article>
-					<footer>October 25</footer>
+					<footer>October 23</footer>
 					<h3><a
 					href="http://www.ieee.org/membership_services/membership/students/competitions/xtreme/index.html"
 					title="IEEEXtreme" target="_blank">IEEEXtreme</a></h3>
@@ -27,7 +27,7 @@ require_once 'header.php';
 				</article>
 
 				<article>
-					<footer>November 9</footer>
+					<footer>November 15</footer>
 					<h3><a href="http://icpc.baylor.edu/"
 					title="ICPC" target="_blank">ICPC</a></h3>
 					<p>The Intercollegiate Programming Competition is a

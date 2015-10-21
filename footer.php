@@ -12,9 +12,9 @@
 		<div id="locations-collection">
 			<div class="address">
 				<h3>Competitions Practice</h3>
-				Every Tuesday &amp; Wednesday<br />
-				Room 1112<br />
-				Engineering Hall (EH)<br />
+				Every Tuesday &amp; Thursday<br />
+				Room 4011<br />
+				Donald Bren Hall (DBH)<br />
 			</div>
 			<div class="address">
 				<h3>Theory Group Meetings</h3>
@@ -31,9 +31,9 @@
 		</div>
 		
 		<div id="copyright">
-			Copyright &copy; 2011, 2012, 2013 ACM, UC Irvine. All Rights Reserved.<br
+			Copyright &copy; 2011, 2012, 2013, 2015 ACM, UC Irvine. All Rights Reserved.<br
 			/> Design by <a href="http://www.giocc.com/" title="GioCC">Gio
-			Borje</a>.
+			Borje</a>.<br/> edited by Shaun McThomas on 10/20/2015			
 		</div>
 	</div>
 </footer>
